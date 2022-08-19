@@ -1,20 +1,14 @@
 package com.company.controller;
 
 import com.company.entity.Book;
-import com.company.service.BookService;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
+import com.company.service.impl.BookServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-
-import java.io.IOException;
-import java.io.PrintWriter;
 
 
 public class BookCommand implements Command {
-    private final BookService bookService;
+    private final BookServiceImpl bookService;
 
-    public BookCommand(BookService bookService) {
+    public BookCommand(BookServiceImpl bookService) {
         this.bookService = bookService;
     }
 

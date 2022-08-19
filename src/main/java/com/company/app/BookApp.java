@@ -4,7 +4,7 @@ import com.company.dao.connection.DataSourse;
 import com.company.dao.BookDao;
 import com.company.dao.impl.BookDaoImpl;
 import com.company.entity.Book;
-import com.company.service.BookService;
+import com.company.service.impl.BookServiceImpl;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class BookApp {
     public static void main(String[] args) {
         BookDao bookDao = new BookDaoImpl(DataSourse.INSTANCE);
-        BookService bookService = new BookService(bookDao);
+        BookServiceImpl bookService = new BookServiceImpl(bookDao);
         Scanner sc = new Scanner(System.in);
 
         System.out.println("""

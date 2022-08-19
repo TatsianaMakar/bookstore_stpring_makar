@@ -1,16 +1,15 @@
 package com.company.controller;
 
-import com.company.entity.Book;
 import com.company.entity.User;
-import com.company.service.UserService;
+import com.company.service.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.List;
 
 public class UsersCommand implements Command {
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
-    public UsersCommand(UserService userService) {
+    public UsersCommand(UserServiceImpl userService) {
         this.userService = userService;
     }
 

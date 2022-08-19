@@ -4,7 +4,7 @@ import com.company.dao.connection.DataSourse;
 import com.company.dao.UserDao;
 import com.company.dao.impl.UserDaoImpl;
 import com.company.entity.User;
-import com.company.service.UserService;
+import com.company.service.impl.UserServiceImpl;
 
 import java.util.List;
 import java.util.Scanner;
@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class UserApp {
     public static void main(String[] args) {
         UserDao userDao = new UserDaoImpl(DataSourse.INSTANCE);
-        UserService userService = new UserService(userDao);
+        UserServiceImpl userService = new UserServiceImpl(userDao);
         Scanner sc = new Scanner(System.in);
 
         System.out.println("""

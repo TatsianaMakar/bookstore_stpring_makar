@@ -9,12 +9,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="73fb3e72-8423-44c8-a359-462720753b2c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    <list default="true" id="73fb3e72-8423-44c8-a359-462720753b2c" name="Changes" comment="added target to gitignore">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/company/app/BookApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/company/app/BookApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/company/app/UserApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/company/app/UserApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/company/controller/BookCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/company/controller/BookCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/company/controller/BooksCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/company/controller/BooksCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/company/controller/CommandFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/company/controller/CommandFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/company/controller/UserCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/company/controller/UserCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/company/controller/UsersCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/company/controller/UsersCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/company/service/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/company/service/impl/BookService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/company/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/company/service/impl/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +38,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="module1_config_xml" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -62,18 +68,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/bookstore_spring_makar/src/main/webapp",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.1718213",
-    "settings.editor.selected.configurable": "com.poratu.idea.plugins.tomcat.setting.TomcatSettingConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/bookstore_spring_makar&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.1718213&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.poratu.idea.plugins.tomcat.setting.TomcatSettingConfigurable&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;86e855e36363efc02d9f525bf40a9e9b&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;ChangesTree.GroupingKeys&quot;: [
+      &quot;module&quot;,
+      &quot;directory&quot;
+    ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\bookstore_makar\src\main\webapp\jsp" />
@@ -257,9 +271,7 @@
       <option name="adminPort" value="8005" />
       <option name="contextPath" value="/bookstore" />
       <option name="docBase" value="E:\bookstore_spring_makar\src\main\webapp" />
-      <option name="envOptions">
-        <map />
-      </option>
+      <option name="envOptions" />
       <option name="passParentEnvironmentVariables" value="true" />
       <option name="port" value="8080" />
       <option name="tomcatInfo">
@@ -287,9 +299,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.com.company.app.BookApp" />
         <item itemvalue="Application.com.company.dao.Log" />
         <item itemvalue="Application.com.company.dao.app.UserApp" />
+        <item itemvalue="Application.com.company.app.BookApp" />
         <item itemvalue="Application.BookApp" />
         <item itemvalue="Application.App" />
       </list>
@@ -308,6 +320,10 @@
       <workItem from="1660590693938" duration="324000" />
       <workItem from="1660591026658" duration="3177000" />
       <workItem from="1660663932517" duration="4151000" />
+      <workItem from="1660674320284" duration="2622000" />
+      <workItem from="1660680370082" duration="351000" />
+      <workItem from="1660750487090" duration="1647000" />
+      <workItem from="1660930794671" duration="2475000" />
     </task>
     <task id="LOCAL-00001" summary="module 2">
       <created>1659781779320</created>
@@ -365,7 +381,21 @@
       <option name="project" value="LOCAL" />
       <updated>1660666763396</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="creat project">
+      <created>1660674144778</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1660674144778</updated>
+    </task>
+    <task id="LOCAL-00010" summary="added target to gitignore">
+      <created>1660932524650</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1660932524650</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -402,6 +432,8 @@
     <MESSAGE value="module 5" />
     <MESSAGE value="update books.jsp" />
     <MESSAGE value="added file README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="added file README.md" />
+    <MESSAGE value="creat project" />
+    <MESSAGE value="added target to gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="added target to gitignore" />
   </component>
 </project>
