@@ -15,7 +15,7 @@ public class BooksCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest req) {
-        List<Book> books = bookService.getAll();
+        List<Book> books = bookService.findAll();
         req.setAttribute("books", books);
         return "jsp/books.jsp";
     }

@@ -15,13 +15,13 @@ public class BookServiceImpl implements BookService {
         this.bookDao = bookDao;
     }
 
-    public List<Book> getAll() {
-        return bookDao.getAll();
+    public List<Book> findAll() {
+        return bookDao.findAll();
     }
 
     @Override
     public Book getById(Long id) {
-        Book book = bookDao.getById(id);
+        Book book = bookDao.findById(id);
         if (book == null) {
             throw new RuntimeException("Can't find book with id=" + id);
         }

@@ -62,7 +62,7 @@ public class BookDaoImpl implements BookDao {
                 ResultSet resultSet = statement.getGeneratedKeys();
                 if (resultSet.next()) {
                     Long id = resultSet.getLong(1);
-                    return getById(id);
+                    return findById(id);
                 }
             }
         } catch (
@@ -73,7 +73,7 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public Book getById(Long id) {
+    public Book findById(Long id) {
         log.debug("Get book with id={} from table books ", id);
         try {
             Connection connection = dataSourse.getConnection();
@@ -126,7 +126,7 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public Long countAllBooks() {
+    public Long countAll() {
         log.debug("Count books");
         try {
             Connection connection = dataSourse.getConnection();
@@ -142,7 +142,7 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public List<Book> getAll() {
+    public List<Book> findAll() {
         log.debug("Get all book from table books ");
         List<Book> books = new ArrayList<>();
         try {
@@ -173,7 +173,7 @@ public class BookDaoImpl implements BookDao {
             statement.setString(5, book.getIsbn());
             statement.setString(6, book.getCover().toString());
             if (statement.executeUpdate() == 1) {
-                return getById(book.getId());
+                return findById(book.getId());
             }
         } catch (SQLException e) {
             log.error(e.getMessage(), e);

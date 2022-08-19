@@ -31,7 +31,7 @@ public class UserApp {
                 System.out.println("Application is close.");
                 break;
             case "all":
-                List<User> users = userService.getAll();
+                List<User> users = userService.findAll();
                 System.out.println("All users in the book store:");
                 users.forEach(System.out::println);
                 break;

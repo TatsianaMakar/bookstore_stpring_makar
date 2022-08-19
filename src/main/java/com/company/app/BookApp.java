@@ -32,7 +32,7 @@ public class BookApp {
                 System.out.println("Application is close.");
                 break;
             case "all":
-                List<Book> books = bookService.getAll();
+                List<Book> books = bookService.findAll();
                 System.out.println("All books in the book store:");
                 books.forEach(System.out::println);
                 break;

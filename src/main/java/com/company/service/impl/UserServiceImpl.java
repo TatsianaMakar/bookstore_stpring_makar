@@ -13,12 +13,12 @@ public class UserServiceImpl implements UserService {
         this.userDao = userDao;
     }
 
-    public List<User> getAll() {
-        return userDao.getAll();
+    public List<User> findAll() {
+        return userDao.findAll();
     }
     @Override
     public User getById(Long id) {
-        User user = userDao.getUserById(id);
+        User user = userDao.findById(id);
         if (user == null) {
             throw new RuntimeException("Can't find user with id=" + id);
         }
