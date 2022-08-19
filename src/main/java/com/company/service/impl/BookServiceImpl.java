@@ -19,6 +19,7 @@ public class BookServiceImpl implements BookService {
         return bookDao.getAll();
     }
 
+    @Override
     public Book getById(Long id) {
         Book book = bookDao.getById(id);
         if (book == null) {
@@ -27,6 +28,7 @@ public class BookServiceImpl implements BookService {
         return book;
     }
 
+    @Override
     public void delete(Long id) {
         boolean success = bookDao.delete(id);
         if (!success) {
@@ -34,19 +36,26 @@ public class BookServiceImpl implements BookService {
         }
     }
 
+    @Override
     public void create(Book entity) {
         Book book = bookDao.create(entity);
-        if (entity.getPrice().compareTo(BigDecimal.ZERO) <= 0) {
-            throw new RuntimeException("Price can't be less than 0");
-        }
+        validate(book);
     }
 
+    @Override
     public Book update(Book entity) {
         Book book = bookDao.update(entity);
+        validate(book);
         if (book == null) {
             throw new RuntimeException("Can't find book with");
         }
         return book;
+    }
+
+    public void validate(Book book) {
+        if (book.getPrice().compareTo(BigDecimal.ZERO) < 0) {
+            throw new RuntimeException("Price is not valid");
+        }
     }
 
 }
