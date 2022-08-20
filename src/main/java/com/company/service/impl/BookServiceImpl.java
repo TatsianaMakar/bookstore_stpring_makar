@@ -1,27 +1,32 @@
 package com.company.service.impl;
 
 import com.company.dao.BookDao;
+import com.company.dao.impl.BookDaoImpl;
 import com.company.entity.Book;
 import com.company.service.BookService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
 
+@Service
 public class BookServiceImpl implements BookService {
 
-    private final BookDao bookDao;
+    private final BookDaoImpl bookDaoImpl;
 
-    public BookServiceImpl(BookDao bookDao) {
-        this.bookDao = bookDao;
+    @Autowired
+    public BookServiceImpl(BookDaoImpl bookDaoImpl) {
+        this.bookDaoImpl = bookDaoImpl;
     }
 
     public List<Book> findAll() {
-        return bookDao.findAll();
+        return bookDaoImpl.findAll();
     }
 
     @Override
-    public Book getById(Long id) {
-        Book book = bookDao.findById(id);
+    public Book findById(Long id) {
+        Book book = bookDaoImpl.findById(id);
         if (book == null) {
             throw new RuntimeException("Can't find book with id=" + id);
         }
@@ -30,7 +35,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void delete(Long id) {
-        boolean success = bookDao.delete(id);
+        boolean success = bookDaoImpl.delete(id);
         if (!success) {
             throw new RuntimeException("Can't find book with id=" + id);
         }
@@ -38,13 +43,13 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void create(Book entity) {
-        Book book = bookDao.create(entity);
+        Book book = bookDaoImpl.create(entity);
         validate(book);
     }
 
     @Override
     public Book update(Book entity) {
-        Book book = bookDao.update(entity);
+        Book book = bookDaoImpl.update(entity);
         validate(book);
         if (book == null) {
             throw new RuntimeException("Can't find book with");

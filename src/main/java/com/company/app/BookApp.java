@@ -1,7 +1,6 @@
 package com.company.app;
 
-import com.company.dao.connection.DataSourse;
-import com.company.dao.BookDao;
+import com.company.dao.connection.DataSource;
 import com.company.dao.impl.BookDaoImpl;
 import com.company.entity.Book;
 import com.company.service.impl.BookServiceImpl;
@@ -12,8 +11,8 @@ import java.util.Scanner;
 
 public class BookApp {
     public static void main(String[] args) {
-        BookDao bookDao = new BookDaoImpl(DataSourse.INSTANCE);
-        BookServiceImpl bookService = new BookServiceImpl(bookDao);
+        BookDaoImpl bookDaoImpl = new BookDaoImpl(DataSource.INSTANCE);
+        BookServiceImpl bookService = new BookServiceImpl(bookDaoImpl);
         Scanner sc = new Scanner(System.in);
 
         System.out.println("""
@@ -38,7 +37,7 @@ public class BookApp {
                 break;
             case "get":
                 System.out.println("Book by id:");
-                Book book = bookService.getById(Long.parseLong(words[1]));
+                Book book = bookService.findById(Long.parseLong(words[1]));
                 System.out.println(book);
                 break;
             case "delete":

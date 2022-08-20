@@ -2,13 +2,16 @@ package com.company.dao.connection;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DataSourse {
-    private static final Logger log = LogManager.getLogger(DataSourse.class);
+@Component
+public class DataSource {
+    private static final Logger log = LogManager.getLogger(DataSource.class);
     private static final String URL = "jdbc:postgresql://localhost:5432/bookstore_bh";
     private static final String URL1 = "jdbc:postgresql://hattie.db.elephantsql.com:5432/jdptrbdw";
     private static final String USER = "postgres";
@@ -16,18 +19,19 @@ public class DataSourse {
     private static final String PASSWORD = "root";
     private static final String PASSWORD1 = "hn72bsHRBP-qi_JQrjeAGlRHjB3xEcok";
     private Connection connection;
-    public static final DataSourse INSTANCE=new DataSourse();
+    public static final DataSource INSTANCE = new DataSource();
 
-    private DataSourse() {
+    @Autowired
+    private DataSource() {
     }
 
-       public Connection getConnection() {
-           try {
-               Class.forName("org.postgresql.Driver");
-           } catch (ClassNotFoundException e) {
-               throw new RuntimeException(e);
-           }
-           if (connection == null) {
+    public Connection getConnection() {
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        if (connection == null) {
             try {
 
                 connection = DriverManager.getConnection(URL, USER, PASSWORD);

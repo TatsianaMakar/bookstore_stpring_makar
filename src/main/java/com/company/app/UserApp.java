@@ -1,7 +1,6 @@
 package com.company.app;
 
-import com.company.dao.connection.DataSourse;
-import com.company.dao.UserDao;
+import com.company.dao.connection.DataSource;
 import com.company.dao.impl.UserDaoImpl;
 import com.company.entity.User;
 import com.company.service.impl.UserServiceImpl;
@@ -11,8 +10,8 @@ import java.util.Scanner;
 
 public class UserApp {
     public static void main(String[] args) {
-        UserDao userDao = new UserDaoImpl(DataSourse.INSTANCE);
-        UserServiceImpl userService = new UserServiceImpl(userDao);
+        UserDaoImpl userDaoImpl = new UserDaoImpl(DataSource.INSTANCE);
+        UserServiceImpl userService = new UserServiceImpl(userDaoImpl);
         Scanner sc = new Scanner(System.in);
 
         System.out.println("""
@@ -37,7 +36,7 @@ public class UserApp {
                 break;
             case "get":
                 System.out.println("User by id:");
-                User user = userService.getById(Long.parseLong(words[1]));
+                User user = userService.findById(Long.parseLong(words[1]));
                 System.out.println(user);
                 break;
             case "delete":

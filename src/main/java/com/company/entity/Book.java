@@ -17,8 +17,6 @@ public class Book {
     public Book() {
     }
 
-    ;
-
     public Book(Long id, String bookName, String author, int year, BigDecimal price, String isbn, Cover cover) {
         this.id = id;
         this.bookName = bookName;
@@ -37,7 +35,6 @@ public class Book {
         this.isbn = isbn;
         this.cover = cover;
     }
-
 
     public Long getId() {
         return id;
@@ -95,7 +92,6 @@ public class Book {
     public void setCover(Cover cover) {
         this.cover = cover;
     }
-
 
     @Override
     public boolean equals(Object o) {

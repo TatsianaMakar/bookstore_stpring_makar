@@ -3,19 +3,23 @@ package com.company.controller;
 import com.company.entity.User;
 import com.company.service.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component("user")
 public class UserCommand implements Command {
-    private final UserServiceImpl userService;
+    private final UserServiceImpl userServiceImpl;
 
-    public UserCommand(UserServiceImpl userService) {
-        this.userService = userService;
+    @Autowired
+    public UserCommand(UserServiceImpl userServiceImpl) {
+        this.userServiceImpl = userServiceImpl;
     }
+
 
     @Override
     public String execute(HttpServletRequest req) {
-        String rawId = req.getParameter("id");
-        Long idUser = Long.parseLong(rawId);
-        User user = userService.getById(idUser);
+        Long id = Long.parseLong(req.getParameter("id"));
+        User user = userServiceImpl.findById(id);
         req.setAttribute("user", user);
         return "jsp/user.jsp";
     }

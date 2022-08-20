@@ -1,46 +1,55 @@
 package com.company.service.impl;
 
 import com.company.dao.UserDao;
+import com.company.dao.impl.UserDaoImpl;
 import com.company.entity.User;
 import com.company.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class UserServiceImpl implements UserService {
-    private final UserDao userDao;
+    private final UserDaoImpl userDaoImpl;
 
-    public UserServiceImpl(UserDao userDao) {
-        this.userDao = userDao;
+    @Autowired
+    public UserServiceImpl(UserDaoImpl userDaoImpl) {
+        this.userDaoImpl = userDaoImpl;
     }
 
     public List<User> findAll() {
-        return userDao.findAll();
+        return userDaoImpl.findAll();
     }
+
     @Override
-    public User getById(Long id) {
-        User user = userDao.findById(id);
+    public User findById(Long id) {
+        User user = userDaoImpl.findById(id);
         if (user == null) {
             throw new RuntimeException("Can't find user with id=" + id);
         }
         return user;
     }
+
     @Override
     public void delete(Long id) {
-        boolean success = userDao.delete(id);
+        boolean success = userDaoImpl.delete(id);
         if (!success) {
             throw new RuntimeException("Can't find user with id=" + id);
         }
     }
+
     @Override
     public void create(User entity) {
-        User user = userDao.create(entity);
+        User user = userDaoImpl.create(entity);
         if (entity.getUserPassword() == null) {
             throw new RuntimeException("You should enter the password");
         }
     }
+
     @Override
     public User update(User entity) {
-        User user = userDao.update(entity);
+        User user = userDaoImpl.update(entity);
         if (user == null) {
             throw new RuntimeException("Can't find user");
         }

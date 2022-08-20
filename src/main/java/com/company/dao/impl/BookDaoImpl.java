@@ -1,18 +1,21 @@
 package com.company.dao.impl;
 
-import com.company.dao.connection.DataSourse;
+import com.company.dao.connection.DataSource;
 import com.company.dao.BookDao;
 import com.company.entity.Book;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class BookDaoImpl implements BookDao {
     private static final Logger log = LogManager.getLogger(BookDaoImpl.class);
-    private final DataSourse dataSourse;
+    private final DataSource dataSourse;
 
     public static final String GET_ALL = "SELECT books.id, books.book_name, books.author, " +
             "books.year, books.price, books.isbn, " +
@@ -40,8 +43,8 @@ public class BookDaoImpl implements BookDao {
     public static final String UPDATE_BY_ID = "UPDATE books SET book_name=?, author=?, year=?, price=?, isbn=?, cover_id=(SELECT cover_id FROM covers WHERE cover_name=?) WHERE id=?";
     public static final String COUNT_BOOKS = "SELECT count(*) AS total FROM books";
 
-
-    public BookDaoImpl(DataSourse dataSourse) {
+    @Autowired
+    public BookDaoImpl(DataSource dataSourse) {
         this.dataSourse = dataSourse;
     }
 

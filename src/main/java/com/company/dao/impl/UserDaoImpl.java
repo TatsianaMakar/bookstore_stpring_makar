@@ -1,15 +1,17 @@
 package com.company.dao.impl;
 
-import com.company.dao.connection.DataSourse;
+import com.company.dao.connection.DataSource;
 import com.company.dao.UserDao;
 import com.company.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@Repository
 public class UserDaoImpl implements UserDao {
-    private final DataSourse dataSourse;
+    private final DataSource dataSourse;
     public static final String GET_ALL = "SELECT id, user_name, user_email, user_password FROM users";
     public static final String GET_BY_EMAIL = "SELECT id, user_name, user_email, user_password FROM users WHERE user_email=?";
     public static final String GET_BY_ID = "SELECT id, user_name, user_email, user_password FROM users WHERE id=?";
@@ -18,7 +20,8 @@ public class UserDaoImpl implements UserDao {
     public static final String ADD_NEW_USER = "INSERT INTO users (user_name, user_email, user_password) VALUES (?,?,?)";
     public static final String COUNT_USERS = "SELECT count(*) AS total FROM users";
 
-    public UserDaoImpl(DataSourse dataSourse) {
+    @Autowired
+    public UserDaoImpl(DataSource dataSourse) {
         this.dataSourse = dataSourse;
     }
 

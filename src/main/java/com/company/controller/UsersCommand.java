@@ -3,12 +3,16 @@ package com.company.controller;
 import com.company.entity.User;
 import com.company.service.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component("users")
 public class UsersCommand implements Command {
     private final UserServiceImpl userService;
 
+    @Autowired
     public UsersCommand(UserServiceImpl userService) {
         this.userService = userService;
     }
