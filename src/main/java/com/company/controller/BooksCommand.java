@@ -1,24 +1,25 @@
 package com.company.controller;
 
-import com.company.entity.Book;
-import com.company.service.BookService;
-import jakarta.servlet.ServletException;
+import com.company.repository.entity.Book;
+import com.company.service.impl.BookServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.util.List;
 
+@Component("books")
 public class BooksCommand implements Command {
-    private final BookService bookService;
+    private final BookServiceImpl bookServiceImpl;
 
-    public BooksCommand(BookService bookService) {
-        this.bookService = bookService;
+    @Autowired
+    public BooksCommand(BookServiceImpl bookServiceImpl) {
+        this.bookServiceImpl = bookServiceImpl;
     }
 
     @Override
     public String execute(HttpServletRequest req) {
-        List<Book> books = bookService.getAll();
+        List<Book> books = bookServiceImpl.findAll();
         req.setAttribute("books", books);
         return "jsp/books.jsp";
     }

@@ -1,25 +1,25 @@
 package com.company.controller;
 
-import com.company.entity.User;
-import com.company.service.UserService;
-import jakarta.servlet.ServletException;
+import com.company.repository.entity.User;
+import com.company.service.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-
+@Component("user")
 public class UserCommand implements Command {
-    private final UserService userService;
+    private final UserServiceImpl userServiceImpl;
 
-    public UserCommand(UserService userService) {
-        this.userService = userService;
+    @Autowired
+    public UserCommand(UserServiceImpl userServiceImpl) {
+        this.userServiceImpl = userServiceImpl;
     }
+
 
     @Override
     public String execute(HttpServletRequest req) {
-        String rawId = req.getParameter("id");
-        Long idUser = Long.parseLong(rawId);
-        User user = userService.getById(idUser);
+        Long id = Long.parseLong(req.getParameter("id"));
+        User user = userServiceImpl.findById(id);
         req.setAttribute("user", user);
         return "jsp/user.jsp";
     }

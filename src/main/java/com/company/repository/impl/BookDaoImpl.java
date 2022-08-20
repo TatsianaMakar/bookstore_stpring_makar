@@ -1,18 +1,21 @@
-package com.company.dao.impl;
+package com.company.repository.impl;
 
-import com.company.dao.connection.DataSourse;
-import com.company.dao.BookDao;
-import com.company.entity.Book;
+import com.company.dao.connection.DataSource;
+import com.company.repository.BookDao;
+import com.company.repository.entity.Book;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class BookDaoImpl implements BookDao {
     private static final Logger log = LogManager.getLogger(BookDaoImpl.class);
-    private final DataSourse dataSourse;
+    private final DataSource dataSourse;
 
     public static final String GET_ALL = "SELECT books.id, books.book_name, books.author, " +
             "books.year, books.price, books.isbn, " +
@@ -40,8 +43,8 @@ public class BookDaoImpl implements BookDao {
     public static final String UPDATE_BY_ID = "UPDATE books SET book_name=?, author=?, year=?, price=?, isbn=?, cover_id=(SELECT cover_id FROM covers WHERE cover_name=?) WHERE id=?";
     public static final String COUNT_BOOKS = "SELECT count(*) AS total FROM books";
 
-
-    public BookDaoImpl(DataSourse dataSourse) {
+    @Autowired
+    public BookDaoImpl(DataSource dataSourse) {
         this.dataSourse = dataSourse;
     }
 
@@ -62,7 +65,7 @@ public class BookDaoImpl implements BookDao {
                 ResultSet resultSet = statement.getGeneratedKeys();
                 if (resultSet.next()) {
                     Long id = resultSet.getLong(1);
-                    return getById(id);
+                    return findById(id);
                 }
             }
         } catch (
@@ -73,7 +76,7 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public Book getById(Long id) {
+    public Book findById(Long id) {
         log.debug("Get book with id={} from table books ", id);
         try {
             Connection connection = dataSourse.getConnection();
@@ -126,7 +129,7 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public Long countAllBooks() {
+    public Long countAll() {
         log.debug("Count books");
         try {
             Connection connection = dataSourse.getConnection();
@@ -142,7 +145,7 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public List<Book> getAll() {
+    public List<Book> findAll() {
         log.debug("Get all book from table books ");
         List<Book> books = new ArrayList<>();
         try {
@@ -173,7 +176,7 @@ public class BookDaoImpl implements BookDao {
             statement.setString(5, book.getIsbn());
             statement.setString(6, book.getCover().toString());
             if (statement.executeUpdate() == 1) {
-                return getById(book.getId());
+                return findById(book.getId());
             }
         } catch (SQLException e) {
             log.error(e.getMessage(), e);

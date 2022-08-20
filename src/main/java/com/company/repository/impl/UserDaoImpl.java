@@ -1,23 +1,27 @@
-package com.company.dao.impl;
+package com.company.repository.impl;
 
-import com.company.dao.connection.DataSourse;
-import com.company.dao.UserDao;
-import com.company.entity.User;
+import com.company.dao.connection.DataSource;
+import com.company.repository.UserDao;
+import com.company.repository.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@Repository
 public class UserDaoImpl implements UserDao {
-    private final DataSourse dataSourse;
+    private final DataSource dataSourse;
     public static final String GET_ALL = "SELECT id, user_name, user_email, user_password FROM users";
     public static final String GET_BY_EMAIL = "SELECT id, user_name, user_email, user_password FROM users WHERE user_email=?";
     public static final String GET_BY_ID = "SELECT id, user_name, user_email, user_password FROM users WHERE id=?";
     public static final String DELETE_BY_ID = "DELETE FROM users WHERE id=?";
     public static final String UPDATE_BY_ID = "UPDATE users SET user_name=?, user_email=?, user_password=? WHERE id=?";
     public static final String ADD_NEW_USER = "INSERT INTO users (user_name, user_email, user_password) VALUES (?,?,?)";
+    public static final String COUNT_USERS = "SELECT count(*) AS total FROM users";
 
-    public UserDaoImpl(DataSourse dataSourse) {
+    @Autowired
+    public UserDaoImpl(DataSource dataSourse) {
         this.dataSourse = dataSourse;
     }
 
@@ -31,21 +35,19 @@ public class UserDaoImpl implements UserDao {
             statement.setString(3, user.getUserPassword());
             if (statement.executeUpdate() == 1) {
                 ResultSet resultSet = statement.getGeneratedKeys();
-            //    Log.logger.debug(statement);
                 if (resultSet.next()) {
                     Long id = resultSet.getLong(1);
-                    return getUserById(id);
+                    return findById(id);
                 }
             }
         } catch (
                 SQLException e) {
-           // Log.logger.log(Level.ERROR, "exception: ", e.getMessage());
         }
         return null;
     }
 
     @Override
-    public List<User> getAll() {
+    public List<User> findAll() {
         List<User> users = new ArrayList<>();
         try {
             Connection connection = dataSourse.getConnection();
@@ -59,10 +61,9 @@ public class UserDaoImpl implements UserDao {
                 user.setUserPassword(resultSet.getString("user_password"));
                 users.add(user);
             }
-          //  Log.logger.debug(statement);
             return users;
         } catch (SQLException e) {
-           // Log.logger.log(Level.ERROR, "exception: ", e.getMessage());
+            System.out.println("something wrong...");
         }
         return null;
     }
@@ -82,20 +83,18 @@ public class UserDaoImpl implements UserDao {
                 user.setUserPassword(resultSet.getString("user_password"));
                 return user;
             }
-          //  Log.logger.debug(statement);
         } catch (SQLException e) {
-          //  Log.logger.log(Level.ERROR, "exception: ", e.getMessage());
+            System.out.println("something wrong...");
         }
         return null;
     }
 
     @Override
-    public User getUserById(Long id) {
+    public User findById(Long id) {
         try {
             Connection connection = dataSourse.getConnection();
             PreparedStatement statement = connection.prepareStatement(GET_BY_ID);
             statement.setLong(1, id);
-         //   Log.logger.debug(statement);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 User user = new User();
@@ -106,9 +105,24 @@ public class UserDaoImpl implements UserDao {
                 return user;
             }
         } catch (SQLException e) {
-          //  Log.logger.log(Level.ERROR, "exception: ", e.getMessage());
+            System.out.println("something wrong...");
         }
         return null;
+    }
+
+    @Override
+    public Long countAll() {
+        try {
+            Connection connection = dataSourse.getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(COUNT_USERS);
+            if (resultSet.next()) {
+                return resultSet.getLong("total");
+            }
+        } catch (SQLException e) {
+            System.out.println("something wrong...");
+        }
+        throw new RuntimeException("Something wrong");
     }
 
     @Override
@@ -123,9 +137,8 @@ public class UserDaoImpl implements UserDao {
             if (statement.executeUpdate() == 1) {
                 return getUserByEmail(user.getUserEmail());
             }
-           // Log.logger.debug(statement);
         } catch (SQLException e) {
-           // Log.logger.log(Level.ERROR, "exception: ", e.getMessage());
+            System.out.println("something wrong...");
         }
         return null;
     }
@@ -136,10 +149,9 @@ public class UserDaoImpl implements UserDao {
             Connection connection = dataSourse.getConnection();
             PreparedStatement statement = connection.prepareStatement(DELETE_BY_ID);
             statement.setLong(1, id);
-           // Log.logger.debug(statement);
             return statement.executeUpdate() == 1;
         } catch (SQLException e) {
-           // Log.logger.log(Level.ERROR, "exception: ", e.getMessage());
+            System.out.println("something wrong...");
         }
         return false;
     }
