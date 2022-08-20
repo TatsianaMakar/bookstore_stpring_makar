@@ -1,6 +1,6 @@
 package com.company.service;
 
-import com.company.entity.User;
+import com.company.repository.entity.User;
 
 public interface UserService {
     public User findById(Long id);

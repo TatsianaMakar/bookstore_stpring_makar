@@ -1,8 +1,7 @@
 package com.company.service.impl;
 
-import com.company.dao.UserDao;
-import com.company.dao.impl.UserDaoImpl;
-import com.company.entity.User;
+import com.company.repository.impl.UserDaoImpl;
+import com.company.repository.entity.User;
 import com.company.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

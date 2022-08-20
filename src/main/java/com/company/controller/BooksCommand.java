@@ -1,6 +1,6 @@
 package com.company.controller;
 
-import com.company.entity.Book;
+import com.company.repository.entity.Book;
 import com.company.service.impl.BookServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;

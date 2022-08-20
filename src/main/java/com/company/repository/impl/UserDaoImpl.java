@@ -1,8 +1,8 @@
-package com.company.dao.impl;
+package com.company.repository.impl;
 
 import com.company.dao.connection.DataSource;
-import com.company.dao.UserDao;
-import com.company.entity.User;
+import com.company.repository.UserDao;
+import com.company.repository.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
