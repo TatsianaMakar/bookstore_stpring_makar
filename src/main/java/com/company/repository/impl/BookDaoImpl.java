@@ -1,33 +1,30 @@
 package com.company.repository.impl;
 
-import com.company.dao.connection.DataSource;
+
 import com.company.repository.BookDao;
 import com.company.repository.entity.Book;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 public class BookDaoImpl implements BookDao {
     private static final Logger log = LogManager.getLogger(BookDaoImpl.class);
-    private final DataSource dataSource;
-
+    private JdbcTemplate jdbcTemplate;
     public static final String GET_ALL = "SELECT books.id, books.book_name, books.author, " +
             "books.year, books.price, books.isbn, " +
             "covers.cover_name FROM books JOIN covers " +
             "ON books.cover_id=covers.cover_id";
-
     public static final String GET_BY_ID = "SELECT books.id, books.book_name, books.author, " +
             "books.year, books.price, books.isbn, " +
             "covers.cover_name FROM books JOIN covers " +
             "ON books.cover_id=covers.cover_id " +
             "WHERE books.id=?";
-
     public static final String GET_BY_ISBN = "SELECT books.id, books.book_name, books.author, " +
             "books.year, books.price, books.isbn, " +
             "covers.cover_name FROM books JOIN covers " +
@@ -44,169 +41,66 @@ public class BookDaoImpl implements BookDao {
     public static final String COUNT_BOOKS = "SELECT count(*) AS total FROM books";
 
     @Autowired
-    public BookDaoImpl(DataSource dataSourse) {
-        this.dataSource = dataSourse;
+    public BookDaoImpl(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
     public Book create(Book book) {
         log.debug("Create book={} in table books ", book);
-        try {
-            Connection connection = dataSource.getConnection();
-            PreparedStatement statement = connection.prepareStatement(ADD_NEW_BOOK, Statement.RETURN_GENERATED_KEYS);
-            statement.setString(1, book.getBookName());
-            statement.setString(2, book.getAuthor());
-            statement.setInt(3, book.getYear());
-            statement.setBigDecimal(4, book.getPrice());
-            statement.setString(5, book.getIsbn());
-            statement.setString(6, book.getCover().toString());
-
-            if (statement.executeUpdate() == 1) {
-                ResultSet resultSet = statement.getGeneratedKeys();
-                if (resultSet.next()) {
-                    Long id = resultSet.getLong(1);
-                    return findById(id);
-                }
-            }
-        } catch (
-                SQLException e) {
-            log.error(e.getMessage(), e);
-        }
         return null;
     }
 
     @Override
     public Book findById(Long id) {
-        log.debug("Get book with id={} from table books ", id);
-        try {
-            Connection connection = dataSource.getConnection();
-            PreparedStatement statement = connection.prepareStatement(GET_BY_ID);
-            statement.setLong(1, id);
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                return creatingBook(resultSet);
-            }
-        } catch (SQLException e) {
-            log.error(e.getMessage(), e);
-        }
-        return null;
+        return jdbcTemplate.queryForObject(GET_BY_ID, this::mapRow, id);
     }
 
     @Override
     public Book getByIsbn(String isbn) {
         log.debug("Get book with isbn={} from table books ", isbn);
-        try {
-            Connection connection = dataSource.getConnection();
-            PreparedStatement statement = connection.prepareStatement(GET_BY_ISBN);
-            statement.setString(1, isbn);
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                return creatingBook(resultSet);
-            }
-        } catch (SQLException e) {
-            log.error(e.getMessage(), e);
-        }
         return null;
     }
 
     @Override
     public List<Book> getBooksByAuthor(String author) {
         log.debug("Get book with author={} from table books ", author);
-        List<Book> books = new ArrayList<>();
-        try {
-            Connection connection = dataSource.getConnection();
-            PreparedStatement statement = connection.prepareStatement(GET_BY_AUTHOR);
-            statement.setString(1, author);
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                books.add(creatingBook(resultSet));
-            }
-            return books;
-        } catch (SQLException e) {
-            log.error(e.getMessage(), e);
-        }
         return null;
     }
 
     @Override
     public Long countAll() {
         log.debug("Count books");
-        try {
-            Connection connection = dataSource.getConnection();
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(COUNT_BOOKS);
-            if (resultSet.next()) {
-                return resultSet.getLong("total");
-            }
-        } catch (SQLException e) {
-            log.error(e.getMessage(), e);
-        }
-        throw new RuntimeException("Something wrong");
+        return 0L;
     }
 
     @Override
     public List<Book> findAll() {
         log.debug("Get all book from table books ");
-        List<Book> books = new ArrayList<>();
-        try {
-            Connection connection = dataSource.getConnection();
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(GET_ALL);
-            while (resultSet.next()) {
-                books.add(creatingBook(resultSet));
-            }
-            return books;
-        } catch (SQLException e) {
-            log.error(e.getMessage(), e);
-        }
-        return null;
+        return jdbcTemplate.query(GET_ALL, this::mapRow);
     }
 
     @Override
     public Book update(Book book) {
         log.debug("Update book ={} in table books ", book);
-        try {
-            Connection connection = dataSource.getConnection();
-            PreparedStatement statement = connection.prepareStatement(UPDATE_BY_ID);
-            statement.setLong(7, book.getId());
-            statement.setString(1, book.getBookName());
-            statement.setString(2, book.getAuthor());
-            statement.setInt(3, book.getYear());
-            statement.setBigDecimal(4, book.getPrice());
-            statement.setString(5, book.getIsbn());
-            statement.setString(6, book.getCover().toString());
-            if (statement.executeUpdate() == 1) {
-                return findById(book.getId());
-            }
-        } catch (SQLException e) {
-            log.error(e.getMessage(), e);
-        }
         return null;
     }
 
     @Override
     public boolean delete(Long id) {
         log.debug("Delete book with id={} from table books ", id);
-        try {
-            Connection connection = dataSource.getConnection();
-            PreparedStatement statement = connection.prepareStatement(DELETE_BY_ID);
-            statement.setLong(1, id);
-            return statement.executeUpdate() == 1;
-        } catch (SQLException e) {
-            log.error(e.getMessage(), e);
-        }
         return false;
     }
 
-    private Book creatingBook(ResultSet resultSet) throws SQLException {
+    public Book mapRow(ResultSet rs, int rowNum) throws SQLException {
         Book book = new Book();
-        book.setId(resultSet.getLong("id"));
-        book.setName(resultSet.getString("book_name"));
-        book.setAuthor(resultSet.getString("author"));
-        book.setYear(resultSet.getInt("year"));
-        book.setPrice(resultSet.getBigDecimal("price"));
-        book.setIsbn(resultSet.getString("isbn"));
-        book.setCover(Book.Cover.valueOf(resultSet.getString("cover_name")));
+        book.setId(rs.getLong("id"));
+        book.setName(rs.getString("book_name"));
+        book.setAuthor(rs.getString("author"));
+        book.setYear(rs.getInt("year"));
+        book.setPrice(rs.getBigDecimal("price"));
+        book.setIsbn(rs.getString("isbn"));
+        book.setCover(Book.Cover.valueOf(rs.getString("cover_name")));
         return book;
     }
 }
