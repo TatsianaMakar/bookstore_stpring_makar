@@ -53,6 +53,7 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public Book findById(Long id) {
+        log.debug("Get book with id={} from table books ", id);
         return jdbcTemplate.queryForObject(GET_BY_ID, this::mapRow, id);
     }
 
@@ -76,7 +77,7 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public List<Book> findAll() {
-        log.debug("Get all book from table books ");
+        log.debug("Get all books from table books ");
         return jdbcTemplate.query(GET_ALL, this::mapRow);
     }
 
