@@ -45,8 +45,7 @@ public class BookDaoImpl implements BookDao {
     public static final String ADD_NEW_BOOK = "INSERT INTO books (book_name, author, year, price, isbn, cover_id) VALUES (?,?,?,?,?,(SELECT cover_id FROM covers WHERE cover_name=?))";
     public static final String UPDATE_BY_ID = "UPDATE books SET book_name=?, author=?, year=?, price=?, isbn=?, cover_id=(SELECT cover_id FROM covers WHERE cover_name=?) WHERE id=?";
     public static final String COUNT_BOOKS = "SELECT count(*) AS total FROM books";
-   // public static final String UPDATE_BY_ID_NAMED = "UPDATE books SET book_name=:book_name, author=:author, year=:year, price=:price, isbn=:isbn, cover_id=(SELECT cover_id FROM covers WHERE cover_name=:cover_name) WHERE id=:id";
-   public static final String UPDATE_BY_ID_NAMED = "UPDATE books SET book_name=:book_name, author=:author, year=:year, isbn=:isbn WHERE id=:id";
+    public static final String UPDATE_BY_ID_NAMED = "UPDATE books SET book_name=:book_name, author=:author, year=:year, price=:price, isbn=:isbn, cover_id=(SELECT cover_id FROM covers WHERE cover_name=:cover_name) WHERE id=:id";
 
 
     @Autowired
@@ -67,6 +66,10 @@ public class BookDaoImpl implements BookDao {
             PreparedStatement ps = con.prepareStatement(ADD_NEW_BOOK);
             ps.setString(1, book.getBookName());
             ps.setString(2, book.getAuthor());
+            ps.setInt(3, book.getYear());
+            ps.setBigDecimal(4, book.getPrice());
+            ps.setString(5, book.getIsbn());
+            ps.setString(6, String.valueOf(book.getCover()));
             return ps;
         }, keyHolder);
         Number number = keyHolder.getKey();
@@ -117,7 +120,7 @@ public class BookDaoImpl implements BookDao {
         map.put("year", book.getYear());
         map.put("price", book.getPrice());
         map.put("isbn", book.getIsbn());
-        map.put("cover_name", book.getCover());
+        map.put("cover_name", String.valueOf(book.getCover()));
         namedJdbcTemplate.update(UPDATE_BY_ID_NAMED, map);
         return findById(book.getId());
     }
@@ -134,9 +137,9 @@ public class BookDaoImpl implements BookDao {
         book.setName(rs.getString("book_name"));
         book.setAuthor(rs.getString("author"));
         book.setYear(rs.getInt("year"));
-        //book.setPrice(rs.getBigDecimal("price"));
+        book.setPrice(rs.getBigDecimal("price"));
         book.setIsbn(rs.getString("isbn"));
-       // book.setCover(Book.Cover.valueOf(rs.getString("cover_name")));
+        book.setCover(Book.Cover.valueOf(rs.getString("cover_name")));
         return book;
     }
 }

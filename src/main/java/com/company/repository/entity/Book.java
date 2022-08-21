@@ -1,7 +1,5 @@
 package com.company.repository.entity;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -71,7 +69,9 @@ public class Book {
         this.id = id;
     }
 
-    public void setName(String name) {this.bookName = name;}
+    public void setName(String bookName) {
+        this.bookName = bookName;
+    }
 
     public void setAuthor(String author) {
         this.author = author;

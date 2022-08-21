@@ -7,8 +7,11 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -42,6 +45,19 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User create(User user) {
         log.debug("Create user={} in table users ", user);
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbcTemplate.update(con -> {
+            PreparedStatement ps = con.prepareStatement(ADD_NEW_USER);
+            ps.setString(1, user.getUserName());
+            ps.setString(2, user.getUserEmail());
+            ps.setString(3, user.getUserPassword());
+            return ps;
+        }, keyHolder);
+        Number number = keyHolder.getKey();
+        if (number != null) {
+            long id = number.longValue();
+            return findById(id);
+        }
         return null;
     }
 

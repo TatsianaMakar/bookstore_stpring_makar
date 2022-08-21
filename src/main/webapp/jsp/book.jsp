@@ -26,18 +26,18 @@
         <th>Year</th>
         <th>${requestScope.book.year}</th>
     </tr>
-<%--    <tr>--%>
-<%--        <th>Price</th>--%>
-<%--        <th>${requestScope.book.price}</th>--%>
-<%--    </tr>--%>
+    <tr>
+        <th>Price</th>
+        <th>${requestScope.book.price}</th>
+    </tr>
     <tr>
         <th>ISBN</th>
         <th>${requestScope.book.isbn}</th>
     </tr>
-<%--    <tr>--%>
-<%--        <th>Cover</th>--%>
-<%--        <th>${requestScope.book.cover}</th>--%>
-<%--    </tr>--%>
+    <tr>
+        <th>Cover</th>
+        <th>${requestScope.book.cover}</th>
+    </tr>
 </table>
 </body>
 </html>

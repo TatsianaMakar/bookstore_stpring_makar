@@ -6,13 +6,17 @@
 <body>
 <form method="post" action="controller">
     <input type="hidden" name="command" value="create_user">
-    <input type="hidden" name="id" value="${requestScope.user.id}">
+    <input type="hidden" name="id">
     <label>Name:
-        <input type="text" name="userName" value="${requestScope.user.userName}">
+        <input type="text" name="user_name">
     </label>
-    <%--    <input type="submit" value="Save" name=controller?command=update_user&id=${user.id}"--%>
-    <%--    <tr><th>Name</th><th>${requestScope.user.userName}</th></tr>--%>
-    <%--    <td><a href="controller?command=update_user&id=${user.id}">"save"</a></td>--%>
+    <label>Email:
+        <input type="text" name="user_email">
+    </label>
+    <label>Password:
+        <input type="text" name="user_password">
+    </label>
+    <input type="submit" value="Save">
 </form>
 
 </body>

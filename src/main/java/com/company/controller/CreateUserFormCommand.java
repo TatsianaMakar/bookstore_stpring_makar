@@ -17,6 +17,8 @@ public class CreateUserFormCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest req) {
+//        User user=new User();
+//        req.setAttribute("user", user);
         return "jsp/createUserForm.jsp";
     }
 }
