@@ -41,25 +41,26 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void create(Book entity) {
+    public Book create(Book entity) {
         Book book = bookDaoImpl.create(entity);
-        validate(book);
+      //  validate(book);
+        return book;
     }
 
     @Override
     public Book update(Book entity) {
         Book book = bookDaoImpl.update(entity);
-        validate(book);
+       // validate(book);
         if (book == null) {
             throw new RuntimeException("Can't find book with");
         }
         return book;
     }
 
-    public void validate(Book book) {
-        if (book.getPrice().compareTo(BigDecimal.ZERO) < 0) {
-            throw new RuntimeException("Price is not valid");
-        }
-    }
+//    public void validate(Book book) {
+//        if (book.getPrice().compareTo(BigDecimal.ZERO) < 0) {
+//            throw new RuntimeException("Price is not valid");
+//        }
+//    }
 
 }

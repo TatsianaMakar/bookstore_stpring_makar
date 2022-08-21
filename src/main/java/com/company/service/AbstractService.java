@@ -7,7 +7,7 @@ public interface AbstractService<K, T> {
 
     public void delete(K id);
 
-    public void create(T entity);
+    public T create(T entity);
 
     public T update(T entity);
 }

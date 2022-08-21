@@ -39,11 +39,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void create(User entity) {
+    public User create(User entity) {
         User user = userDaoImpl.create(entity);
         if (entity.getUserPassword() == null) {
             throw new RuntimeException("You should enter the password");
         }
+        return user;
     }
 
     @Override
