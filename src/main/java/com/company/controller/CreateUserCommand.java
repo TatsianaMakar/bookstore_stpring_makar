@@ -21,8 +21,8 @@ public class CreateUserCommand implements Command {
         user.setUserName(req.getParameter("user_name"));
         user.setUserEmail(req.getParameter("user_email"));
         user.setUserPassword(req.getParameter("user_password"));
-        User newUser = userService.create(user);
-        req.setAttribute("user", newUser);
+        userService.create(user);
+        req.setAttribute("user", user);
         req.setAttribute("message", "User has been created");
         return "jsp/user.jsp";
     }

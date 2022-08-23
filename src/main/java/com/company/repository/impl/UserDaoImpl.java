@@ -100,6 +100,9 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean delete(Long id) {
         log.debug("Delete user with id={} from table users ", id);
+        if (jdbcTemplate.update(DELETE_BY_ID, id) == 1) {
+            return true;
+        }
         return false;
     }
 

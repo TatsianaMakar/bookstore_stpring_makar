@@ -128,6 +128,10 @@ public class BookDaoImpl implements BookDao {
     @Override
     public boolean delete(Long id) {
         log.debug("Delete book with id={} from table books ", id);
+        if (jdbcTemplate.update(DELETE_BY_ID, id) == 1) {
+            return true;
+        }
+        log.debug("Delete book with id={} from table books ", id);
         return false;
     }
 
