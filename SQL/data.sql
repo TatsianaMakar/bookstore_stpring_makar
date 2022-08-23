@@ -27,32 +27,28 @@ VALUES ('Book1', 'Author1', 2000, 8.35, '987-0-1234-5680-0',(SELECT cover_id FRO
 ('Book19', 'Author19', 2018, 8.35,'987-2-0234-5681-8',(SELECT cover_id FROM covers WHERE cover_name='SPECIAL')),
 ('Book20', 'Author20', 2019, 8.35,'987-2-1234-5681-9',(SELECT cover_id FROM covers WHERE cover_name='SPECIAL'));
 
-INSERT INTO roles(role_name) VALUES 
-('ADMIN'), 
-('MANAGER'), 
-('CUSTOMER');
 
-INSERT INTO users (user_name, user_email, user_password, role_id) 
-VALUES ('User1', 'Email1', 'Password1', (SELECT id FROM roles WHERE role_name='ADMIN')),
-('User2', 'Email2', 'Password2', (SELECT id FROM roles WHERE role_name='ADMIN')),
-('User3', 'Email3', 'Password3', (SELECT id FROM roles WHERE role_name='ADMIN')),
-('User4', 'Email4', 'Password4', (SELECT id FROM roles WHERE role_name='ADMIN')),
-('User5', 'Email5', 'Password5', (SELECT id FROM roles WHERE role_name='ADMIN')),
-('User6', 'Email6', 'Password6', (SELECT id FROM roles WHERE role_name='ADMIN')),
-('User7', 'Email7', 'Password7', (SELECT id FROM roles WHERE role_name='ADMIN')),
-('User8', 'Email8', 'Password8', (SELECT id FROM roles WHERE role_name='MANAGER')),
-('User9', 'Email9', 'Password9', (SELECT id FROM roles WHERE role_name='MANAGER')),
-('User10', 'Email10', 'Password10', (SELECT id FROM roles WHERE role_name='MANAGER')),
-('User11', 'Email11', 'Password11', (SELECT id FROM roles WHERE role_name='MANAGER')),
-('User12', 'Email12', 'Password12', (SELECT id FROM roles WHERE role_name='MANAGER')),
-('User13', 'Email13', 'Password13', (SELECT id FROM roles WHERE role_name='MANAGER')),
-('User14', 'Email14', 'Password14', (SELECT id FROM roles WHERE role_name='CUSTOMER')),
-('User15', 'Email15', 'Password15', (SELECT id FROM roles WHERE role_name='CUSTOMER')),
-('User16', 'Email16', 'Password16', (SELECT id FROM roles WHERE role_name='CUSTOMER')),
-('User17', 'Email17', 'Password17', (SELECT id FROM roles WHERE role_name='CUSTOMER')),
-('User18', 'Email18', 'Password18', (SELECT id FROM roles WHERE role_name='CUSTOMER')),
-('User19', 'Email19', 'Password19', (SELECT id FROM roles WHERE role_name='CUSTOMER')),
-('User20', 'Email20', 'Password20', (SELECT id FROM roles WHERE role_name='CUSTOMER'));
+INSERT INTO users (user_name, user_email, user_password)
+VALUES ('User1', 'Email1', 'Password1'),
+('User2', 'Email2', 'Password2'),
+('User3', 'Email3', 'Password3'),
+('User4', 'Email4', 'Password4'),
+('User5', 'Email5', 'Password5'),
+('User6', 'Email6', 'Password6'),
+('User7', 'Email7', 'Password7'),
+('User8', 'Email8', 'Password8'),
+('User9', 'Email9', 'Password9'),
+('User10', 'Email10', 'Password10'),
+('User11', 'Email11', 'Password11'),
+('User12', 'Email12', 'Password12'),
+('User13', 'Email13', 'Password13'),
+('User14', 'Email14', 'Password14'),
+('User15', 'Email15', 'Password15'),
+('User16', 'Email16', 'Password16'),
+('User17', 'Email17', 'Password17'),
+('User18', 'Email18', 'Password18'),
+('User19', 'Email19', 'Password19'),
+('User20', 'Email20', 'Password20');
 
 
 

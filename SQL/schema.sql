@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS books (
 );
 
 CREATE TABLE IF NOT EXISTS roles (
-    id BIGSERIAL PRIMARY KEY,
+    role_id BIGSERIAL PRIMARY KEY,
     role_name VARCHAR(20)
 );
 

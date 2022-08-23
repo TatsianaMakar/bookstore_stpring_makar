@@ -11,17 +11,17 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String user_name, String user_email, String user_password) {
+    public User(Long id, String userName, String userEmail, String userPassword) {
         this.id = id;
-        this.userName = user_name;
-        this.userEmail = user_email;
-        this.userPassword = user_password;
+        this.userName = userName;
+        this.userEmail = userEmail;
+        this.userPassword = userPassword;
     }
 
-    public User(String user_name, String user_email, String user_password) {
-        this.userName = user_name;
-        this.userEmail = user_email;
-        this.userPassword = user_password;
+    public User(String userName, String userEmail, String userPassword) {
+        this.userName = userName;
+        this.userEmail = userEmail;
+        this.userPassword = userPassword;
     }
 
     public Long getId() {
@@ -73,9 +73,9 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", user_name='" + userName + '\'' +
-                ", user_email='" + userEmail + '\'' +
-                ", user_password='" + userPassword + '\'' +
+                ", userName='" + userName + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                ", userPassword='" + userPassword + '\'' +
                 '}';
     }
 }

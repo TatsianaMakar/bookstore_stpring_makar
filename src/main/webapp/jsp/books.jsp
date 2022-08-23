@@ -12,13 +12,13 @@
         <th>Title</th>
         <th>Author</th>
     </tr>
-<%--    <tr> --%>
-        <c:forEach items="${requestScope.books}" var="book" varStatus="counter">
-    <tr>
-        <td>${counter.count}</td>
-        <td><a href="controller?command=book&id=${book.id}">${book.bookName}</a></td>
-        <td>${book.author}</td>
-    </tr>
+    <%--    <tr> --%>
+    <c:forEach items="${requestScope.books}" var="book" varStatus="counter">
+        <tr>
+            <td>${counter.count}</td>
+            <td><a href="controller?command=book&id=${book.id}">${book.bookName}</a></td>
+            <td>${book.author}</td>
+        </tr>
     </c:forEach>
 </table>
 </body>
