@@ -20,7 +20,7 @@ public class CreateBookCommand implements Command {
     @Override
     public String execute(HttpServletRequest req) {
         Book book = new Book();
-        book.setName(req.getParameter("book_name"));
+        book.setBookName(req.getParameter("book_name"));
         book.setAuthor(req.getParameter("author"));
         book.setYear(Integer.parseInt(req.getParameter("year")));
         book.setPrice(new BigDecimal(req.getParameter("price")).setScale(2));

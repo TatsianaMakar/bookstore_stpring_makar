@@ -138,7 +138,7 @@ public class BookDaoImpl implements BookDao {
     public Book mapRow(ResultSet rs, int rowNum) throws SQLException {
         Book book = new Book();
         book.setId(rs.getLong("id"));
-        book.setName(rs.getString("book_name"));
+        book.setBookName(rs.getString("book_name"));
         book.setAuthor(rs.getString("author"));
         book.setYear(rs.getInt("year"));
         book.setPrice(rs.getBigDecimal("price"));

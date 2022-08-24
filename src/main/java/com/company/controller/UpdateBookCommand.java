@@ -23,7 +23,7 @@ public class UpdateBookCommand implements Command {
     public String execute(HttpServletRequest req) {
         Long id = Long.parseLong(req.getParameter("id"));
         Book book = bookService.findById(id);
-        book.setName(req.getParameter("book_name"));
+        book.setBookName(req.getParameter("book_name"));
         book.setAuthor(req.getParameter("author"));
         book.setYear(Integer.parseInt(req.getParameter("year")));
         book.setPrice(new BigDecimal(req.getParameter("price")));
