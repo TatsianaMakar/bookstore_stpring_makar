@@ -36,10 +36,10 @@ CREATE TABLE IF NOT EXISTS users (
  
  CREATE TABLE IF NOT EXISTS orders(
  id BIGSERIAL PRIMARY KEY,
+ user_id BIGINT REFERENCES users
  status_id BIGINT REFERENCES status,
  totalPrice DECIMAL(8,2),
- iser_id BIGINT REFERENCES users
- );
+  );
         
  CREATE TABLE IF NOT EXISTS order_items(
  id BIGSERIAL PRIMARY KEY,
