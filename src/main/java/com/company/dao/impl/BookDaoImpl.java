@@ -1,8 +1,8 @@
-package com.company.repository.impl;
+package com.company.dao.impl;
 
 
-import com.company.repository.BookDao;
-import com.company.repository.entity.Book;
+import com.company.dao.BookDao;
+import com.company.dao.entity.Book;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

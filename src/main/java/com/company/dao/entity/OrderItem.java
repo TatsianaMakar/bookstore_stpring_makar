@@ -1,4 +1,4 @@
-package com.company.repository.entity;
+package com.company.dao.entity;
 
 import lombok.Data;
 

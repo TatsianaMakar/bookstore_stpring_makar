@@ -1,8 +1,6 @@
-package com.company.repository.entity;
+package com.company.dao.entity;
 
 import lombok.*;
-
-import java.util.Objects;
 
 @Data
 public class User {

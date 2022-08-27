@@ -1,6 +1,6 @@
-package com.company.repository;
+package com.company.dao;
 
-import com.company.repository.entity.OrderItem;
+import com.company.dao.entity.OrderItem;
 
 import java.util.List;
 

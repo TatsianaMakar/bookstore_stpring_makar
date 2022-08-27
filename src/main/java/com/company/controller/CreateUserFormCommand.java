@@ -1,6 +1,5 @@
 package com.company.controller;
 
-import com.company.repository.entity.User;
 import com.company.service.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;

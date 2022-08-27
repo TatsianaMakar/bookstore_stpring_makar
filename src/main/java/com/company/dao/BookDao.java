@@ -1,6 +1,6 @@
-package com.company.repository;
+package com.company.dao;
 
-import com.company.repository.entity.Book;
+import com.company.dao.entity.Book;
 
 import java.util.List;
 

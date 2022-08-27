@@ -1,7 +1,7 @@
 package com.company.service.impl;
 
-import com.company.repository.impl.BookDaoImpl;
-import com.company.repository.entity.Book;
+import com.company.dao.impl.BookDaoImpl;
+import com.company.dao.entity.Book;
 import com.company.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

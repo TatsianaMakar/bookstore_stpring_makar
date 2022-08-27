@@ -1,13 +1,12 @@
-package com.company.repository.impl;
+package com.company.dao.impl;
 
-import com.company.repository.OrderDao;
-import com.company.repository.OrderItemDao;
-import com.company.repository.UserDao;
-import com.company.repository.entity.Order;
-import com.company.repository.entity.OrderItem;
-import com.company.repository.entity.User;
+import com.company.dao.OrderDao;
+import com.company.dao.OrderItemDao;
+import com.company.dao.UserDao;
+import com.company.dao.entity.Order;
+import com.company.dao.entity.OrderItem;
+import com.company.dao.entity.User;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 

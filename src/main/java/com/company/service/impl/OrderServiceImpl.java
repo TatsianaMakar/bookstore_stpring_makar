@@ -1,7 +1,7 @@
 package com.company.service.impl;
 
-import com.company.repository.OrderDao;
-import com.company.repository.entity.Order;
+import com.company.dao.OrderDao;
+import com.company.dao.entity.Order;
 import com.company.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
