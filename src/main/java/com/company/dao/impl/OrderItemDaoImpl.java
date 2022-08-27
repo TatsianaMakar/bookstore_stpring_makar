@@ -2,6 +2,7 @@ package com.company.dao.impl;
 
 import com.company.dao.BookDao;
 import com.company.dao.OrderItemDao;
+import com.company.dao.dto.BookDto;
 import com.company.dao.entity.Book;
 import com.company.dao.entity.OrderItem;
 import lombok.RequiredArgsConstructor;
@@ -60,8 +61,8 @@ public class OrderItemDaoImpl implements OrderItemDao {
         orderItem.setQuantity(rs.getInt("quantity"));
         orderItem.setPrice(rs.getBigDecimal("price"));
         Long bookId = rs.getLong("book_id");
-        Book book = bookDao.findById(bookId);
-        orderItem.setBook(book);
+      //  BookDto bookDto = bookDao.findById(bookId);
+       // orderItem.setBook(book);
         return orderItem;
     }
 }

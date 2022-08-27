@@ -1,6 +1,7 @@
 package com.company.dao.impl;
 
 import com.company.dao.UserDao;
+import com.company.dao.dto.UserDto;
 import com.company.dao.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -43,7 +44,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User create(User user) {
+    public UserDto create(UserDto user) {
         log.debug("Create user={} in table users ", user);
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(con -> {
@@ -62,19 +63,19 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> findAll() {
+    public List<UserDto> findAll() {
         log.debug("Get all users from table users ");
         return jdbcTemplate.query(GET_ALL, this::mapRow);
     }
 
     @Override
-    public User getUserByEmail(String email) {
+    public UserDto getUserByEmail(String email) {
         log.debug("Get user with email={} from table users ", email);
         return null;
     }
 
     @Override
-    public User findById(Long id) {
+    public UserDto findById(Long id) {
         log.debug("Get user with id={} from table users ", id);
         return jdbcTemplate.queryForObject(GET_BY_ID, this::mapRow, id);
     }
@@ -86,7 +87,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User update(User user) {
+    public UserDto update(UserDto user) {
         log.debug("Update user ={} in table users ", user);
         Map<String, Object> map = new HashMap<>();
         map.put("id", user.getId());
@@ -106,13 +107,13 @@ public class UserDaoImpl implements UserDao {
         return false;
     }
 
-    public User mapRow(ResultSet rs, int rowNum) throws SQLException {
-        User user = new User();
-        user.setId(rs.getLong("id"));
-        user.setUserName(rs.getString("user_name"));
-        user.setUserEmail(rs.getString("user_email"));
-        user.setUserPassword(rs.getString("user_password"));
-        return user;
+    public UserDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+        UserDto userDto = new UserDto();
+        userDto.setId(rs.getLong("id"));
+        userDto.setUserName(rs.getString("user_name"));
+        userDto.setUserEmail(rs.getString("user_email"));
+        userDto.setUserPassword(rs.getString("user_password"));
+        return userDto;
     }
 
 }

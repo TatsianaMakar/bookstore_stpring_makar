@@ -71,8 +71,8 @@ public class OrderDaoImpl implements OrderDao {
         order.setStatus(Order.Status.valueOf(rs.getString("status_name")));
         order.setTotalCost(rs.getBigDecimal("total_cost"));
         Long userId = rs.getLong("user_id");
-        User user = userDao.findById(userId);
-        order.setUser(user);
+       // User user = userDao.findById(userId);
+      //  order.setUser(user);
         List<OrderItem> items = orderItemDao.findByOrderId(order.getId());
         order.setItems(items);
         return order;

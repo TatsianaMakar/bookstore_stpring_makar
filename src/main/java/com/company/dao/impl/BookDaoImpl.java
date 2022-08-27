@@ -2,6 +2,7 @@ package com.company.dao.impl;
 
 
 import com.company.dao.BookDao;
+import com.company.dao.dto.BookDto;
 import com.company.dao.entity.Book;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -42,7 +43,7 @@ public class BookDaoImpl implements BookDao {
             "ON books.cover_id=covers.id " +
             "WHERE books.author=? AND deleted=FALSE";
     public static final String DELETE_BY_ID = "DELETE FROM books WHERE id=?";
-    public static final String ADD_NEW_BOOK = "INSERT INTO books (book_name, author, year, price, isbn, cover_id) VALUES (?,?,?,?,?,(SELECT cover_id FROM covers WHERE cover_name=?))";
+    public static final String ADD_NEW_BOOK = "INSERT INTO books (book_name, author, year, price, isbn, cover_id) VALUES (?,?,?,?,?,(SELECT id FROM covers WHERE cover_name=?))";
     public static final String UPDATE_BY_ID = "UPDATE books SET book_name=?, author=?, year=?, price=?, isbn=?, cover_id=(SELECT id FROM covers WHERE cover_name=?) WHERE id=? AND deleted=FALSE";
     public static final String COUNT_BOOKS = "SELECT count(*) AS total FROM books";
     public static final String UPDATE_BY_ID_NAMED = "UPDATE books SET book_name=:book_name, author=:author, year=:year, price=:price, isbn=:isbn, cover_id=(SELECT id FROM covers WHERE cover_name=:cover_name) WHERE id=:id AND deleted=FALSE";
@@ -59,7 +60,7 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public Book create(Book book) {
+    public BookDto create(BookDto book) {
         log.debug("Create book={} in table books ", book);
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(con -> {
@@ -81,19 +82,19 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public Book findById(Long id) {
+    public BookDto findById(Long id) {
         log.debug("Get book with id={} from table books ", id);
         return jdbcTemplate.queryForObject(GET_BY_ID, this::mapRow, id);
     }
 
     @Override
-    public Book getByIsbn(String isbn) {
+    public BookDto getByIsbn(String isbn) {
         log.debug("Get book with isbn={} from table books ", isbn);
         return null;
     }
 
     @Override
-    public List<Book> getBooksByAuthor(String author) {
+    public List<BookDto> getBooksByAuthor(String author) {
         log.debug("Get book with author={} from table books ", author);
         return null;
     }
@@ -105,13 +106,13 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public List<Book> findAll() {
+    public List<BookDto> findAll() {
         log.debug("Get all books from table books ");
         return jdbcTemplate.query(GET_ALL, this::mapRow);
     }
 
     @Override
-    public Book update(Book book) {
+    public BookDto update(BookDto book) {
         log.debug("Update book ={} in table books ", book);
         Map<String, Object> map = new HashMap<>();
         map.put("id", book.getId());
@@ -135,15 +136,15 @@ public class BookDaoImpl implements BookDao {
         return false;
     }
 
-    public Book mapRow(ResultSet rs, int rowNum) throws SQLException {
-        Book book = new Book();
-        book.setId(rs.getLong("id"));
-        book.setBookName(rs.getString("book_name"));
-        book.setAuthor(rs.getString("author"));
-        book.setYear(rs.getInt("year"));
-        book.setPrice(rs.getBigDecimal("price"));
-        book.setIsbn(rs.getString("isbn"));
-        book.setCover(Book.Cover.valueOf(rs.getString("cover_name")));
-        return book;
+    public BookDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+        BookDto bookDto = new BookDto();
+        bookDto.setId(rs.getLong("id"));
+        bookDto.setBookName(rs.getString("book_name"));
+        bookDto.setAuthor(rs.getString("author"));
+        bookDto.setYear(rs.getInt("year"));
+        bookDto.setPrice(rs.getBigDecimal("price"));
+        bookDto.setIsbn(rs.getString("isbn"));
+        bookDto.setCover(Book.Cover.valueOf(rs.getString("cover_name")));
+        return bookDto;
     }
 }

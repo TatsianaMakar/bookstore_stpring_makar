@@ -1,4 +1,8 @@
 package com.company.repository;
 
-public interface UserRepository {
+
+import com.company.dao.entity.User;
+
+public interface UserRepository extends AbstractRepository<Long, User>{
+    User getUserByEmail(String email);
 }

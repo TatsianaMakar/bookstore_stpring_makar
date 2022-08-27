@@ -1,8 +1,8 @@
 package com.company.dao;
 
-import com.company.dao.entity.User;
+import com.company.dao.dto.UserDto;
 
-public interface UserDao extends AbstractDao<Long, User> {
-    User getUserByEmail(String email);
+public interface UserDao extends AbstractDao<Long, UserDto> {
+    UserDto getUserByEmail(String email);
 
 }
