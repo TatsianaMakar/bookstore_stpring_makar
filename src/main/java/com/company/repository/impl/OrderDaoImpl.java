@@ -28,12 +28,12 @@ public class OrderDaoImpl implements OrderDao {
             o.total_cost,
             status.status_name FROM orders o JOIN status
             ON o.status_id=status.id
-            WHERE o.id=?
+            WHERE o.id=? AND deleted=FALSE
             """;
     public static final String GET_ALL = """
             SELECT o.id, o.user_id, o.total_cost, 
             status.status_name FROM orders o JOIN status
-            ON o.status_id=status.id
+            ON o.status_id=status.id AND deleted=FALSE
             """;
 
     @Override

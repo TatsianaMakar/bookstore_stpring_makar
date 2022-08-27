@@ -18,7 +18,7 @@ import java.util.List;
 public class OrderItemDaoImpl implements OrderItemDao {
     private final JdbcTemplate jdbcTemplate;
     private final BookDao bookDao;
-    private static final String GET_BY_ORDER_ID = "SELECT * FROM order_item WHERE order_id=?";
+    private static final String GET_BY_ORDER_ID = "SELECT * FROM order_item WHERE order_id=? AND deleted=FALSE";
 
     @Override
     public OrderItem create(OrderItem entity) {

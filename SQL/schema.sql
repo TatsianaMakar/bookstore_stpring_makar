@@ -38,7 +38,8 @@ CREATE TABLE IF NOT EXISTS users (
  id BIGSERIAL PRIMARY KEY,
  user_id BIGINT REFERENCES users,
  status_id BIGINT REFERENCES status,
- total_cost DECIMAL(8,2)
+ total_cost DECIMAL(8,2),
+ deleted BOOLEAN NOT NULL DEFAULT FALSE
   );
         
  CREATE TABLE IF NOT EXISTS order_item(
@@ -46,7 +47,8 @@ CREATE TABLE IF NOT EXISTS users (
  book_id BIGINT REFERENCES books,
  quantity INT2,
  price DECIMAL(6,2),
- order_id BIGINT REFERENCES orders
+ order_id BIGINT REFERENCES orders,
+ deleted BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 

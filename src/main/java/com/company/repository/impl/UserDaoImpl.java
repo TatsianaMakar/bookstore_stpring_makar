@@ -23,12 +23,12 @@ public class UserDaoImpl implements UserDao {
     private static final Logger log = LogManager.getLogger(UserDaoImpl.class);
     private final JdbcTemplate jdbcTemplate;
     private NamedParameterJdbcTemplate namedJdbcTemplate;
-    public static final String GET_ALL = "SELECT id, user_name, user_email, user_password FROM users";
-    public static final String GET_BY_EMAIL = "SELECT id, user_name, user_email, user_password FROM users WHERE user_email=?";
-    public static final String GET_BY_ID = "SELECT id, user_name, user_email, user_password FROM users WHERE id=?";
-    public static final String DELETE_BY_ID = "DELETE FROM users WHERE id=?";
-    public static final String UPDATE_BY_ID = "UPDATE users SET user_name=?, user_email=?, user_password=? WHERE id=?";
-    public static final String UPDATE_BY_ID_NAMED = "UPDATE users SET user_name=:user_name, user_email=:user_email, user_password=:user_password WHERE id=:id";
+    public static final String GET_ALL = "SELECT id, user_name, user_email, user_password FROM users WHERE deleted=FALSE";
+    public static final String GET_BY_EMAIL = "SELECT id, user_name, user_email, user_password FROM users WHERE user_email=? AND deleted=FALSE";
+    public static final String GET_BY_ID = "SELECT id, user_name, user_email, user_password FROM users WHERE id=? AND deleted=FALSE";
+    public static final String DELETE_BY_ID = "DELETE FROM users WHERE id=? AND deleted=FALSE";
+    public static final String UPDATE_BY_ID = "UPDATE users SET user_name=?, user_email=?, user_password=? WHERE id=? AND deleted=FALSE";
+    public static final String UPDATE_BY_ID_NAMED = "UPDATE users SET user_name=:user_name, user_email=:user_email, user_password=:user_password WHERE id=:id AND deleted=FALSE";
     public static final String ADD_NEW_USER = "INSERT INTO users (user_name, user_email, user_password) VALUES (?,?,?)";
     public static final String COUNT_USERS = "SELECT count(*) AS total FROM users";
 
