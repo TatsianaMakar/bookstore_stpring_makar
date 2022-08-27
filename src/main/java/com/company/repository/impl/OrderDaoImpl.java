@@ -6,6 +6,7 @@ import com.company.repository.UserDao;
 import com.company.repository.entity.Order;
 import com.company.repository.entity.OrderItem;
 import com.company.repository.entity.User;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -15,6 +16,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Repository
+@RequiredArgsConstructor
 public class OrderDaoImpl implements OrderDao {
     private final JdbcTemplate jdbcTemplate;
     private final UserDao userDao;
@@ -33,13 +35,6 @@ public class OrderDaoImpl implements OrderDao {
             status.status_name FROM orders o JOIN status
             ON o.status_id=status.id
             """;
-
-    @Autowired
-    public OrderDaoImpl(JdbcTemplate jdbcTemplate, UserDao userDao, OrderItemDao orderItemDao) {
-        this.jdbcTemplate = jdbcTemplate;
-        this.userDao = userDao;
-        this.orderItemDao = orderItemDao;
-    }
 
     @Override
     public Order create(Order entity) {

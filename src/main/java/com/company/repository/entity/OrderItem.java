@@ -3,6 +3,7 @@ package com.company.repository.entity;
 import lombok.Data;
 
 import java.math.BigDecimal;
+
 @Data
 public class OrderItem {
     private Long id;
@@ -16,7 +17,7 @@ public class OrderItem {
         return "OrderItem{" +
                 "id=" + id +
                 ", book=" + book +
-                ", order=" + order.getId()+
+                ", order=" + order.getId() +
                 ", quantity=" + quantity +
                 ", price=" + price +
                 '}';

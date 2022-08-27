@@ -4,6 +4,7 @@ import com.company.repository.BookDao;
 import com.company.repository.OrderItemDao;
 import com.company.repository.entity.Book;
 import com.company.repository.entity.OrderItem;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -13,16 +14,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Repository
+@RequiredArgsConstructor
 public class OrderItemDaoImpl implements OrderItemDao {
     private final JdbcTemplate jdbcTemplate;
     private final BookDao bookDao;
     private static final String GET_BY_ORDER_ID = "SELECT * FROM order_item WHERE order_id=?";
-
-    @Autowired
-    public OrderItemDaoImpl(JdbcTemplate jdbcTemplate, BookDao bookDao) {
-        this.jdbcTemplate = jdbcTemplate;
-        this.bookDao = bookDao;
-    }
 
     @Override
     public OrderItem create(OrderItem entity) {
