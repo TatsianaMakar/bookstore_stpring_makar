@@ -21,8 +21,11 @@ public class OrderDaoImpl implements OrderDao {
     private final OrderItemDao orderItemDao;
 
     private static final String GET_BY_ID = """
-            SELECT o.id, o.status, o.total_cost, o.user_id
-            FROM orders o
+            SELECT o.id, 
+            o.user_id, 
+            o.total_cost,
+            status.status_name FROM orders o JOIN status
+            ON o.status_id=status.id
             WHERE o.id=?
             """;
 
@@ -67,9 +70,10 @@ public class OrderDaoImpl implements OrderDao {
         Order order = new Order();
         order.setId(rs.getLong("id"));
         order.setStatus(Order.Status.valueOf(rs.getString("status_name")));
-        order.setTotalCost(rs.getBigDecimal("totalPrice"));
+        order.setTotalCost(rs.getBigDecimal("total_cost"));
         Long userId = rs.getLong("user_id");
         User user = userDao.findById(userId);
+        order.setUser(user);
         List<OrderItem> items = orderItemDao.findByOrderId(order.getId());
         order.setItems(items);
         return order;

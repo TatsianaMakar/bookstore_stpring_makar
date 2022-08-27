@@ -18,7 +18,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order findById(Long id) {
         Order order = orderDao.findById(id);
-        return null;
+        return order;
     }
 
     @Override
