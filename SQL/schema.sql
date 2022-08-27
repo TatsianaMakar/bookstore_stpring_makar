@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS books (
     author VARCHAR(20),
     year INTEGER,
     price DECIMAL (4,2),
-    isbn CHAR(17) UNIQUE,
+    isbn CHAR(17),
     cover_id BIGINT REFERENCES covers,
     deleted BOOLEAN NOT NULL DEFAULT FALSE
 );
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS books (
 CREATE TABLE IF NOT EXISTS users (
     id BIGSERIAL PRIMARY KEY,
     user_name VARCHAR(20),
-    user_email VARCHAR(20) UNIQUE,
+    user_email VARCHAR(20),
     user_password VARCHAR(20),
     deleted BOOLEAN NOT NULL DEFAULT FALSE
  );
