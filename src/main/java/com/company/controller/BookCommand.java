@@ -21,7 +21,6 @@ public class BookCommand implements Command {
         Book book = bookServiceImpl.findById(idBook);
         req.setAttribute("book", book);
         return "jsp/book.jsp";
-
     }
 
 
