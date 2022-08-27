@@ -1,7 +1,7 @@
 package com.company.service;
 
-import com.company.repository.OrderDao;
+import com.company.repository.entity.Order;
 
-public interface OrderService extends AbstractService<OrderDao, Long> {
+public interface OrderService extends AbstractService<Long, Order> {
 
 }

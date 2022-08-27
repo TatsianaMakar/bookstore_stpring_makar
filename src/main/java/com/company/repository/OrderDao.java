@@ -1,4 +1,6 @@
 package com.company.repository;
 
-public interface OrderDao extends AbstractDao<OrderDao, Long>{
+import com.company.repository.entity.Order;
+
+public interface OrderDao extends AbstractDao<Long, Order>{
 }

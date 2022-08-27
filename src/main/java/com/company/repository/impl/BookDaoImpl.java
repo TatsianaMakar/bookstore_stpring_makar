@@ -25,27 +25,27 @@ public class BookDaoImpl implements BookDao {
     public static final String GET_ALL = "SELECT books.id, books.book_name, books.author, " +
             "books.year, books.price, books.isbn, " +
             "covers.cover_name FROM books JOIN covers " +
-            "ON books.cover_id=covers.cover_id";
+            "ON books.cover_id=covers.id";
     public static final String GET_BY_ID = "SELECT books.id, books.book_name, books.author, " +
             "books.year, books.price, books.isbn, " +
             "covers.cover_name FROM books JOIN covers " +
-            "ON books.cover_id=covers.cover_id " +
+            "ON books.cover_id=covers.id " +
             "WHERE books.id=?";
     public static final String GET_BY_ISBN = "SELECT books.id, books.book_name, books.author, " +
             "books.year, books.price, books.isbn, " +
             "covers.cover_name FROM books JOIN covers " +
-            "ON books.cover_id=covers.cover_id " +
+            "ON books.cover_id=covers.id " +
             "WHERE books.isbn=?";
     public static final String GET_BY_AUTHOR = "SELECT books.id, books.book_name, books.author, " +
             "books.year, books.price, books.isbn, " +
             "covers.cover_name FROM books JOIN covers " +
-            "ON books.cover_id=covers.cover_id " +
+            "ON books.cover_id=covers.id " +
             "WHERE books.author=?";
     public static final String DELETE_BY_ID = "DELETE FROM books WHERE id=?";
     public static final String ADD_NEW_BOOK = "INSERT INTO books (book_name, author, year, price, isbn, cover_id) VALUES (?,?,?,?,?,(SELECT cover_id FROM covers WHERE cover_name=?))";
-    public static final String UPDATE_BY_ID = "UPDATE books SET book_name=?, author=?, year=?, price=?, isbn=?, cover_id=(SELECT cover_id FROM covers WHERE cover_name=?) WHERE id=?";
+    public static final String UPDATE_BY_ID = "UPDATE books SET book_name=?, author=?, year=?, price=?, isbn=?, cover_id=(SELECT id FROM covers WHERE cover_name=?) WHERE id=?";
     public static final String COUNT_BOOKS = "SELECT count(*) AS total FROM books";
-    public static final String UPDATE_BY_ID_NAMED = "UPDATE books SET book_name=:book_name, author=:author, year=:year, price=:price, isbn=:isbn, cover_id=(SELECT cover_id FROM covers WHERE cover_name=:cover_name) WHERE id=:id";
+    public static final String UPDATE_BY_ID_NAMED = "UPDATE books SET book_name=:book_name, author=:author, year=:year, price=:price, isbn=:isbn, cover_id=(SELECT id FROM covers WHERE cover_name=:cover_name) WHERE id=:id";
 
 
     @Autowired

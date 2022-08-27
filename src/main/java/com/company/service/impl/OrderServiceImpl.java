@@ -1,6 +1,7 @@
 package com.company.service.impl;
 
 import com.company.repository.OrderDao;
+import com.company.repository.entity.Order;
 import com.company.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,22 +16,22 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Long findById(OrderDao id) {
+    public Order findById(Long id) {
+        Order order = orderDao.findById(id);
         return null;
     }
 
     @Override
-    public void delete(OrderDao id) {
-
+    public void delete(Long id) {
     }
 
     @Override
-    public Long create(Long entity) {
+    public Order create(Order entity) {
         return null;
     }
 
     @Override
-    public Long update(Long entity) {
+    public Order update(Order entity) {
         return null;
     }
 }
