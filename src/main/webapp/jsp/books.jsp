@@ -12,7 +12,6 @@
         <th>Title</th>
         <th>Author</th>
     </tr>
-    <%--    <tr> --%>
     <c:forEach items="${requestScope.books}" var="book" varStatus="counter">
         <tr>
             <td>${counter.count}</td>

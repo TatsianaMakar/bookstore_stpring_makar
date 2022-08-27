@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS order_items;
+DROP TABLE IF EXISTS order_item;
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS status;
 DROP TABLE IF EXISTS books;
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS users (
  total_cost DECIMAL(8,2)
   );
         
- CREATE TABLE IF NOT EXISTS order_items(
+ CREATE TABLE IF NOT EXISTS order_item(
  id BIGSERIAL PRIMARY KEY,
  book_id BIGINT REFERENCES books,
  quantity INT2,

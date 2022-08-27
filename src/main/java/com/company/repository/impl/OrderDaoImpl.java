@@ -28,6 +28,11 @@ public class OrderDaoImpl implements OrderDao {
             ON o.status_id=status.id
             WHERE o.id=?
             """;
+    public static final String GET_ALL = """
+            SELECT o.id, o.user_id, o.total_cost, 
+            status.status_name FROM orders o JOIN status
+            ON o.status_id=status.id
+            """;
 
     @Autowired
     public OrderDaoImpl(JdbcTemplate jdbcTemplate, UserDao userDao, OrderItemDao orderItemDao) {
@@ -53,7 +58,7 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public List<Order> findAll() {
-        return null;
+        return jdbcTemplate.query(GET_ALL, this::mapRow);
     }
 
     @Override

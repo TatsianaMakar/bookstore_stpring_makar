@@ -53,17 +53,18 @@ INSERT INTO status (status_name) VALUES
 ('DELIVERED'),
 ('CANCELED');
 
-INSERT INTO orders (status_id, total_cost, user_id) VALUES
-((SELECT id FROM status WHERE status_name='PENDING'),100.25, (SELECT id FROM users WHERE user_name='User3')),
-((SELECT id FROM status WHERE status_name='CONFIRMED'),80.25, (SELECT id FROM users WHERE user_name='User8')),
-((SELECT id FROM status WHERE status_name='DELIVERED'),100.00, (SELECT id FROM users WHERE user_name='User1')),
-((SELECT id FROM status WHERE status_name='CANCELED'),50.50, (SELECT id FROM users WHERE user_name='User20')),
-((SELECT id FROM status WHERE status_name='CONFIRMED'),35.53, (SELECT id FROM users WHERE user_name='User5'));
+INSERT INTO orders (status_id, user_id) VALUES
+((SELECT id FROM status WHERE status_name='PENDING'), (SELECT id FROM users WHERE user_name='User3')),
+((SELECT id FROM status WHERE status_name='CONFIRMED'), (SELECT id FROM users WHERE user_name='User8')),
+((SELECT id FROM status WHERE status_name='DELIVERED'), (SELECT id FROM users WHERE user_name='User1')),
+((SELECT id FROM status WHERE status_name='CANCELED'), (SELECT id FROM users WHERE user_name='User20')),
+((SELECT id FROM status WHERE status_name='CONFIRMED'), (SELECT id FROM users WHERE user_name='User5'));
 
-INSERT INTO order_items (book_id, quantity, price) VALUES
-((SELECT id FROM books WHERE book_name='Book7'),3, 11.15),
-((SELECT id FROM books WHERE book_name='Book1'),2, 8.35),
-((SELECT id FROM books WHERE book_name='Book8'),1, 88.35),
-((SELECT id FROM books WHERE book_name='Book20'),5, 81.35),
-((SELECT id FROM books WHERE book_name='Book7'),2, 11.15);
+INSERT INTO order_item (book_id, quantity, price, order_id) VALUES
+((SELECT id FROM books WHERE book_name='Book7'),3, (SELECT price FROM books WHERE book_name='Book7'),1),
+((SELECT id FROM books WHERE book_name='Book1'),2, (SELECT price FROM books WHERE book_name='Book1'),1),
+((SELECT id FROM books WHERE book_name='Book8'),1, (SELECT price FROM books WHERE book_name='Book8'),3),
+((SELECT id FROM books WHERE book_name='Book20'),5, (SELECT price FROM books WHERE book_name='Book20'),3),
+((SELECT id FROM books WHERE book_name='Book7'),2, (SELECT price FROM books WHERE book_name='Book7'),1);
 
+ 

@@ -16,7 +16,8 @@
     </tr>
     <tr>
         <th>User</th>
-        <td><a href="controller?command=user&id=${requestScope.order.user.id}">${requestScope.order.user.userEmail}</a></td>
+        <td><a href="controller?command=user&id=${requestScope.order.user.id}">${requestScope.order.user.userEmail}</a>
+        </td>
     </tr>
     <tr>
         <th>Status</th>
@@ -24,7 +25,6 @@
     </tr>
     <tr>
         <th>Items</th>
-        </td>
         <td>
             <table>
                 <c:forEach items="${requestScope.order.items}" var="item">

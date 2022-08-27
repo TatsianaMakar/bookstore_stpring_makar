@@ -6,6 +6,8 @@ import com.company.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class OrderServiceImpl implements OrderService {
     private final OrderDao orderDao;
@@ -19,6 +21,11 @@ public class OrderServiceImpl implements OrderService {
     public Order findById(Long id) {
         Order order = orderDao.findById(id);
         return order;
+    }
+
+    @Override
+    public List<Order> findAll() {
+        return orderDao.findAll();
     }
 
     @Override

@@ -16,7 +16,7 @@ import java.util.List;
 public class OrderItemDaoImpl implements OrderItemDao {
     private final JdbcTemplate jdbcTemplate;
     private final BookDao bookDao;
-    private static final String GET_BY_ID = "SELECT * FROM order_items WHERE id=?";
+    private static final String GET_BY_ORDER_ID = "SELECT * FROM order_item WHERE order_id=?";
 
     @Autowired
     public OrderItemDaoImpl(JdbcTemplate jdbcTemplate, BookDao bookDao) {
@@ -56,7 +56,7 @@ public class OrderItemDaoImpl implements OrderItemDao {
 
     @Override
     public List<OrderItem> findByOrderId(Long orderId) {
-        return jdbcTemplate.query(GET_BY_ID, this::mapRow, orderId);
+        return jdbcTemplate.query(GET_BY_ORDER_ID, this::mapRow, orderId);
     }
 
     public OrderItem mapRow(ResultSet rs, int rowNum) throws SQLException {
