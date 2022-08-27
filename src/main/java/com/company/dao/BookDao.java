@@ -1,13 +1,14 @@
 package com.company.dao;
 
+import com.company.dao.dto.BookDto;
 import com.company.dao.entity.Book;
 
 import java.util.List;
 
-public interface BookDao extends AbstractDao<Long, Book> {
+public interface BookDao extends AbstractDao<Long, BookDto> {
 
-    Book getByIsbn(String isbn);
+    BookDto getByIsbn(String isbn);
 
-    List<Book> getBooksByAuthor(String author);
+    List<BookDto> getBooksByAuthor(String author);
 
 }
