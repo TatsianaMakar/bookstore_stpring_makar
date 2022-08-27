@@ -53,7 +53,7 @@ INSERT INTO status (status_name) VALUES
 ('DELIVERED'),
 ('CANCELED');
 
-INSERT INTO orders (status_id, totalPrice, iser_id) VALUES
+INSERT INTO orders (status_id, total_cost, user_id) VALUES
 ((SELECT id FROM status WHERE status_name='PENDING'),100.25, (SELECT id FROM users WHERE user_name='User3')),
 ((SELECT id FROM status WHERE status_name='CONFIRMED'),80.25, (SELECT id FROM users WHERE user_name='User8')),
 ((SELECT id FROM status WHERE status_name='DELIVERED'),100.00, (SELECT id FROM users WHERE user_name='User1')),
