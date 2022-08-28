@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -68,7 +69,7 @@ public class BookServiceImpl implements BookService {
 
     public void validateIsbn(Book entity) {
         Book book = bookRepository.findById(entity.getId());
-        if (book != null && book.getIsbn().equals(entity.getIsbn())) {
+        if (book != null && Objects.equals(book.getIsbn(), entity.getIsbn())) {
             throw new RuntimeException("Book with isbn: " + entity.getIsbn() + " already exist");
         }
     }
