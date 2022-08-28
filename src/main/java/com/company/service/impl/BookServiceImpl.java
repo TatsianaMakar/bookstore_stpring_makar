@@ -1,6 +1,5 @@
 package com.company.service.impl;
 
-import com.company.dao.impl.BookDaoImpl;
 import com.company.dao.entity.Book;
 import com.company.repository.impl.BookRepositoryImpl;
 import com.company.service.BookService;
@@ -45,23 +44,32 @@ public class BookServiceImpl implements BookService {
     @Override
     public Book create(Book entity) {
         Book book = bookRepository.create(entity);
-        validate(book);
+        validatePrice(book);
+        validateIsbn(entity);
         return book;
     }
 
     @Override
     public Book update(Book entity) {
         Book book = bookRepository.update(entity);
-        validate(book);
+        validatePrice(book);
+        validateIsbn(entity);
         if (book == null) {
             throw new RuntimeException("Can't find book with");
         }
         return book;
     }
 
-    public void validate(Book book) {
+    public void validatePrice(Book book) {
         if (book.getPrice().compareTo(BigDecimal.ZERO) < 0) {
             throw new RuntimeException("Price is not valid");
+        }
+    }
+
+    public void validateIsbn(Book entity) {
+        Book book = bookRepository.findById(entity.getId());
+        if (book != null && book.getIsbn().equals(entity.getIsbn())) {
+            throw new RuntimeException("Book with isbn: " + entity.getIsbn() + " already exist");
         }
     }
 
