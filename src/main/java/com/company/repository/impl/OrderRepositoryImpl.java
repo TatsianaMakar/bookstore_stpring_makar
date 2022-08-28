@@ -15,6 +15,7 @@ import com.company.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
@@ -53,6 +54,7 @@ public class OrderRepositoryImpl implements OrderRepository {
                     entity.setBook(book);
                     return entity;
                 }).toList();
+        orderEntity.setTotalCost(totalCost(items));
         orderEntity.setItems(items);
         return orderEntity;
     }
@@ -64,7 +66,6 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     @Override
     public List<Order> findAll() {
-//        OrderDto orderDto = orderDao.findById(id);
         List<Order> orders = orderDao.findAll().stream()
                 .map(dto -> {
                     Order entity = mapper.toEntity(dto);
@@ -82,6 +83,7 @@ public class OrderRepositoryImpl implements OrderRepository {
                                 entityItem.setBook(book);
                                 return entityItem;
                             }).toList();
+                    entity.setTotalCost(totalCost(items));
                     entity.setItems(items);
                     return entity;
                 }).toList();
@@ -97,4 +99,16 @@ public class OrderRepositoryImpl implements OrderRepository {
     public boolean delete(Long id) {
         return false;
     }
+
+    public BigDecimal totalCost(List<OrderItem> items) {
+        BigDecimal totalCost = new BigDecimal(0);
+        for (int i = 0; i < items.size(); i++) {
+            OrderItem ord = items.get(i);
+            BigDecimal cost = ord.getPrice().multiply(BigDecimal.valueOf(ord.getQuantity()));
+            totalCost = totalCost.add(cost);
+        }
+        return totalCost;
+    }
 }
+
+

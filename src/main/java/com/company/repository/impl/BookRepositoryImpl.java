@@ -7,6 +7,7 @@ import com.company.repository.BookRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 @Repository
 public class BookRepositoryImpl implements BookRepository {
     private final BookDao bookDao;

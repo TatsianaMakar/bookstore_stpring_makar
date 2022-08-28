@@ -4,6 +4,7 @@ import com.company.dao.entity.Book;
 import lombok.Data;
 
 import java.math.BigDecimal;
+
 @Data
 public class BookDto {
     private Long id;
