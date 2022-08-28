@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -42,6 +43,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User create(User entity) {
         User user = userRepository.create(entity);
+        validateEmail(entity);
         if (entity.getUserPassword() == null) {
             throw new RuntimeException("You should enter the password");
         }
@@ -51,9 +53,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public User update(User entity) {
         User user = userRepository.update(entity);
+        validateEmail(entity);
         if (user == null) {
             throw new RuntimeException("Can't find user");
         }
         return user;
+    }
+
+    public void validateEmail(User entity) {
+        User user = userRepository.findById(entity.getId());
+        if (user != null && Objects.equals(user.getUserEmail(), entity.getUserEmail())) {
+            throw new RuntimeException("User with email: " + entity.getUserEmail() + " already exist");
+        }
     }
 }
