@@ -44,18 +44,8 @@ public class OrderRepositoryImpl implements OrderRepository {
         UserDto userDto = userDao.findById(userId);
         User user = mapper.toEntity(userDto);
         orderEntity.setUser(user);
-        List<OrderItem> items = orderItemDao.findByOrderId(orderDto.getId()).stream()
-                .map(dto -> {
-                    OrderItem entity = mapper.toEntity(dto);
-                    entity.setOrder(orderEntity);
-                    Long bookId = dto.getBookId();
-                    BookDto bookDto = bookDao.findById(bookId);
-                    Book book = mapper.toEntity(bookDto);
-                    entity.setBook(book);
-                    return entity;
-                }).toList();
-        orderEntity.setTotalCost(totalCost(items));
-        orderEntity.setItems(items);
+        orderEntity.setTotalCost(totalCost(creatingItems(orderEntity)));
+        orderEntity.setItems(creatingItems(orderEntity));
         return orderEntity;
     }
 
@@ -73,18 +63,8 @@ public class OrderRepositoryImpl implements OrderRepository {
                     UserDto userDto = userDao.findById(userId);
                     User user = mapper.toEntity(userDto);
                     entity.setUser(user);
-                    List<OrderItem> items = orderItemDao.findByOrderId(entity.getId()).stream()
-                            .map(dtoItem -> {
-                                OrderItem entityItem = mapper.toEntity(dtoItem);
-                                entityItem.setOrder(entity);
-                                Long bookId = dtoItem.getBookId();
-                                BookDto bookDto = bookDao.findById(bookId);
-                                Book book = mapper.toEntity(bookDto);
-                                entityItem.setBook(book);
-                                return entityItem;
-                            }).toList();
-                    entity.setTotalCost(totalCost(items));
-                    entity.setItems(items);
+                    entity.setTotalCost(totalCost(creatingItems(entity)));
+                    entity.setItems(creatingItems(entity));
                     return entity;
                 }).toList();
         return orders;
@@ -108,6 +88,20 @@ public class OrderRepositoryImpl implements OrderRepository {
             totalCost = totalCost.add(cost);
         }
         return totalCost;
+    }
+
+    public List<OrderItem> creatingItems(Order entity) {
+        List<OrderItem> items = orderItemDao.findByOrderId(entity.getId()).stream()
+                .map(dtoItem -> {
+                    OrderItem entityItem = mapper.toEntity(dtoItem);
+                    entityItem.setOrder(entity);
+                    Long bookId = dtoItem.getBookId();
+                    BookDto bookDto = bookDao.findById(bookId);
+                    Book book = mapper.toEntity(bookDto);
+                    entityItem.setBook(book);
+                    return entityItem;
+                }).toList();
+        return items;
     }
 }
 
