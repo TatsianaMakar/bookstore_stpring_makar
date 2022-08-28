@@ -13,13 +13,8 @@ import java.util.List;
 @Service
 public class BookServiceImpl implements BookService {
 
-    //private final BookDaoImpl bookDaoImpl;
     private final BookRepositoryImpl bookRepository;
 
-    //    @Autowired
-//    public BookServiceImpl(BookDaoImpl bookDaoImpl) {
-//        this.bookDaoImpl = bookDaoImpl;
-//    }
     @Autowired
     public BookServiceImpl(BookRepositoryImpl bookRepository) {
         this.bookRepository = bookRepository;

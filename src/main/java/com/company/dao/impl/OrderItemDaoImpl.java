@@ -2,9 +2,7 @@ package com.company.dao.impl;
 
 import com.company.dao.BookDao;
 import com.company.dao.OrderItemDao;
-import com.company.dao.dto.BookDto;
-import com.company.dao.entity.Book;
-import com.company.dao.entity.OrderItem;
+import com.company.dao.dto.OrderItemDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -21,12 +19,12 @@ public class OrderItemDaoImpl implements OrderItemDao {
     private static final String GET_BY_ORDER_ID = "SELECT * FROM order_item WHERE order_id=? AND deleted=FALSE";
 
     @Override
-    public OrderItem create(OrderItem entity) {
+    public OrderItemDto create(OrderItemDto entity) {
         return null;
     }
 
     @Override
-    public OrderItem findById(Long id) {
+    public OrderItemDto findById(Long id) {
         return null;
     }
 
@@ -36,12 +34,12 @@ public class OrderItemDaoImpl implements OrderItemDao {
     }
 
     @Override
-    public List<OrderItem> findAll() {
+    public List<OrderItemDto> findAll() {
         return null;
     }
 
     @Override
-    public OrderItem update(OrderItem entity) {
+    public OrderItemDto update(OrderItemDto entity) {
         return null;
     }
 
@@ -51,18 +49,17 @@ public class OrderItemDaoImpl implements OrderItemDao {
     }
 
     @Override
-    public List<OrderItem> findByOrderId(Long orderId) {
+    public List<OrderItemDto> findByOrderId(Long orderId) {
         return jdbcTemplate.query(GET_BY_ORDER_ID, this::mapRow, orderId);
     }
 
-    public OrderItem mapRow(ResultSet rs, int rowNum) throws SQLException {
-        OrderItem orderItem = new OrderItem();
-        orderItem.setId(rs.getLong("id"));
-        orderItem.setQuantity(rs.getInt("quantity"));
-        orderItem.setPrice(rs.getBigDecimal("price"));
-        Long bookId = rs.getLong("book_id");
-      //  BookDto bookDto = bookDao.findById(bookId);
-       // orderItem.setBook(book);
-        return orderItem;
+    public OrderItemDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+        OrderItemDto orderItemDto = new OrderItemDto();
+        orderItemDto.setId(rs.getLong("id"));
+        orderItemDto.setQuantity(rs.getInt("quantity"));
+        orderItemDto.setPrice(rs.getBigDecimal("price"));
+        orderItemDto.setOrderId(rs.getLong("order_id"));
+        orderItemDto.setBookId(rs.getLong("book_id"));
+        return orderItemDto;
     }
 }

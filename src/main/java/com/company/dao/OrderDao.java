@@ -1,6 +1,7 @@
 package com.company.dao;
 
-import com.company.dao.entity.Order;
 
-public interface OrderDao extends AbstractDao<Long, Order> {
+import com.company.dao.dto.OrderDto;
+
+public interface OrderDao extends AbstractDao<Long, OrderDto> {
 }

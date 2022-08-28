@@ -67,4 +67,4 @@ INSERT INTO order_item (book_id, quantity, price, order_id,deleted) VALUES
 ((SELECT id FROM books WHERE book_name='Book20'),5, (SELECT price FROM books WHERE book_name='Book20'),3,FALSE),
 ((SELECT id FROM books WHERE book_name='Book7'),2, (SELECT price FROM books WHERE book_name='Book7'),1,FALSE);
 
- 
+ SELECT * FROM orders;

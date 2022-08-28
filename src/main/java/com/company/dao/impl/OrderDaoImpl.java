@@ -3,9 +3,7 @@ package com.company.dao.impl;
 import com.company.dao.OrderDao;
 import com.company.dao.OrderItemDao;
 import com.company.dao.UserDao;
-import com.company.dao.entity.Order;
-import com.company.dao.entity.OrderItem;
-import com.company.dao.entity.User;
+import com.company.dao.dto.OrderDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -36,12 +34,12 @@ public class OrderDaoImpl implements OrderDao {
             """;
 
     @Override
-    public Order create(Order entity) {
+    public OrderDto create(OrderDto entity) {
         return null;
     }
 
     @Override
-    public Order findById(Long id) {
+    public OrderDto findById(Long id) {
         return jdbcTemplate.queryForObject(GET_BY_ID, this::mapRow, id);
     }
 
@@ -51,12 +49,12 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public List<Order> findAll() {
+    public List<OrderDto> findAll() {
         return jdbcTemplate.query(GET_ALL, this::mapRow);
     }
 
     @Override
-    public Order update(Order entity) {
+    public OrderDto update(OrderDto entity) {
         return null;
     }
 
@@ -65,16 +63,12 @@ public class OrderDaoImpl implements OrderDao {
         return false;
     }
 
-    public Order mapRow(ResultSet rs, int rowNum) throws SQLException {
-        Order order = new Order();
-        order.setId(rs.getLong("id"));
-        order.setStatus(Order.Status.valueOf(rs.getString("status_name")));
-        order.setTotalCost(rs.getBigDecimal("total_cost"));
-        Long userId = rs.getLong("user_id");
-       // User user = userDao.findById(userId);
-      //  order.setUser(user);
-        List<OrderItem> items = orderItemDao.findByOrderId(order.getId());
-        order.setItems(items);
-        return order;
+    public OrderDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+        OrderDto orderDto = new OrderDto();
+        orderDto.setId(rs.getLong("id"));
+        orderDto.setUserId(rs.getLong("user_id"));
+        orderDto.setStatus(OrderDto.Status.valueOf(rs.getString("status_name")));
+        orderDto.setTotalCost(rs.getBigDecimal("total_cost"));
+        return orderDto;
     }
 }

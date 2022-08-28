@@ -2,7 +2,6 @@ package com.company.dao.impl;
 
 import com.company.dao.UserDao;
 import com.company.dao.dto.UserDto;
-import com.company.dao.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
