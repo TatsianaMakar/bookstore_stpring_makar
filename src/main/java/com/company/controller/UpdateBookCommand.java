@@ -1,9 +1,7 @@
 package com.company.controller;
 
-import com.company.repository.entity.Book;
-import com.company.repository.entity.User;
+import com.company.dao.entity.Book;
 import com.company.service.impl.BookServiceImpl;
-import com.company.service.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,7 +21,7 @@ public class UpdateBookCommand implements Command {
     public String execute(HttpServletRequest req) {
         Long id = Long.parseLong(req.getParameter("id"));
         Book book = bookService.findById(id);
-        book.setName(req.getParameter("book_name"));
+        book.setBookName(req.getParameter("book_name"));
         book.setAuthor(req.getParameter("author"));
         book.setYear(Integer.parseInt(req.getParameter("year")));
         book.setPrice(new BigDecimal(req.getParameter("price")));

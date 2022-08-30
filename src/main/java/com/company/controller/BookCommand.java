@@ -1,6 +1,6 @@
 package com.company.controller;
 
-import com.company.repository.entity.Book;
+import com.company.dao.entity.Book;
 import com.company.service.impl.BookServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,6 @@ public class BookCommand implements Command {
         Book book = bookServiceImpl.findById(idBook);
         req.setAttribute("book", book);
         return "jsp/book.jsp";
-
     }
 
 

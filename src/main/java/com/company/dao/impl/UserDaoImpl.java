@@ -1,7 +1,7 @@
-package com.company.repository.impl;
+package com.company.dao.impl;
 
-import com.company.repository.UserDao;
-import com.company.repository.entity.User;
+import com.company.dao.UserDao;
+import com.company.dao.dto.UserDto;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +23,12 @@ public class UserDaoImpl implements UserDao {
     private static final Logger log = LogManager.getLogger(UserDaoImpl.class);
     private final JdbcTemplate jdbcTemplate;
     private NamedParameterJdbcTemplate namedJdbcTemplate;
-    public static final String GET_ALL = "SELECT id, user_name, user_email, user_password FROM users";
-    public static final String GET_BY_EMAIL = "SELECT id, user_name, user_email, user_password FROM users WHERE user_email=?";
-    public static final String GET_BY_ID = "SELECT id, user_name, user_email, user_password FROM users WHERE id=?";
-    public static final String DELETE_BY_ID = "DELETE FROM users WHERE id=?";
-    public static final String UPDATE_BY_ID = "UPDATE users SET user_name=?, user_email=?, user_password=? WHERE id=?";
-    public static final String UPDATE_BY_ID_NAMED = "UPDATE users SET user_name=:user_name, user_email=:user_email, user_password=:user_password WHERE id=:id";
+    public static final String GET_ALL = "SELECT id, user_name, user_email, user_password FROM users WHERE deleted=FALSE";
+    public static final String GET_BY_EMAIL = "SELECT id, user_name, user_email, user_password FROM users WHERE user_email=? AND deleted=FALSE";
+    public static final String GET_BY_ID = "SELECT id, user_name, user_email, user_password FROM users WHERE id=? AND deleted=FALSE";
+    public static final String DELETE_BY_ID = "DELETE FROM users WHERE id=? AND deleted=FALSE";
+    public static final String UPDATE_BY_ID = "UPDATE users SET user_name=?, user_email=?, user_password=? WHERE id=? AND deleted=FALSE";
+    public static final String UPDATE_BY_ID_NAMED = "UPDATE users SET user_name=:user_name, user_email=:user_email, user_password=:user_password WHERE id=:id AND deleted=FALSE";
     public static final String ADD_NEW_USER = "INSERT INTO users (user_name, user_email, user_password) VALUES (?,?,?)";
     public static final String COUNT_USERS = "SELECT count(*) AS total FROM users";
 
@@ -43,7 +43,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User create(User user) {
+    public UserDto create(UserDto user) {
         log.debug("Create user={} in table users ", user);
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(con -> {
@@ -62,19 +62,19 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> findAll() {
+    public List<UserDto> findAll() {
         log.debug("Get all users from table users ");
         return jdbcTemplate.query(GET_ALL, this::mapRow);
     }
 
     @Override
-    public User getUserByEmail(String email) {
+    public UserDto getUserByEmail(String email) {
         log.debug("Get user with email={} from table users ", email);
         return null;
     }
 
     @Override
-    public User findById(Long id) {
+    public UserDto findById(Long id) {
         log.debug("Get user with id={} from table users ", id);
         return jdbcTemplate.queryForObject(GET_BY_ID, this::mapRow, id);
     }
@@ -86,7 +86,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User update(User user) {
+    public UserDto update(UserDto user) {
         log.debug("Update user ={} in table users ", user);
         Map<String, Object> map = new HashMap<>();
         map.put("id", user.getId());
@@ -106,13 +106,13 @@ public class UserDaoImpl implements UserDao {
         return false;
     }
 
-    public User mapRow(ResultSet rs, int rowNum) throws SQLException {
-        User user = new User();
-        user.setId(rs.getLong("id"));
-        user.setUserName(rs.getString("user_name"));
-        user.setUserEmail(rs.getString("user_email"));
-        user.setUserPassword(rs.getString("user_password"));
-        return user;
+    public UserDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+        UserDto userDto = new UserDto();
+        userDto.setId(rs.getLong("id"));
+        userDto.setUserName(rs.getString("user_name"));
+        userDto.setUserEmail(rs.getString("user_email"));
+        userDto.setUserPassword(rs.getString("user_password"));
+        return userDto;
     }
 
 }

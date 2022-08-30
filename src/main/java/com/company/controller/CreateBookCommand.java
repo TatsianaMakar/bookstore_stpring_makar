@@ -1,6 +1,6 @@
 package com.company.controller;
 
-import com.company.repository.entity.Book;
+import com.company.dao.entity.Book;
 import com.company.service.impl.BookServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class CreateBookCommand implements Command {
     @Override
     public String execute(HttpServletRequest req) {
         Book book = new Book();
-        book.setName(req.getParameter("book_name"));
+        book.setBookName(req.getParameter("book_name"));
         book.setAuthor(req.getParameter("author"));
         book.setYear(Integer.parseInt(req.getParameter("year")));
         book.setPrice(new BigDecimal(req.getParameter("price")).setScale(2));
