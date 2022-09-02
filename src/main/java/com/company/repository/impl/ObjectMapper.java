@@ -20,7 +20,7 @@ public class ObjectMapper {
         dto.setYear(entity.getYear());
         dto.setPrice(entity.getPrice());
         dto.setIsbn(entity.getIsbn());
-        dto.setCover(entity.getCover());
+        //dto.setCover(entity.getCover());
         return dto;
     }
 
@@ -32,7 +32,7 @@ public class ObjectMapper {
         entity.setYear(dto.getYear());
         entity.setPrice(dto.getPrice());
         entity.setIsbn(dto.getIsbn());
-        entity.setCover(dto.getCover());
+        //entity.setCover(dto.getCover());
         return entity;
     }
 

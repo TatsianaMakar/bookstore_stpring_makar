@@ -25,7 +25,7 @@ public class CreateBookCommand implements Command {
         book.setYear(Integer.parseInt(req.getParameter("year")));
         book.setPrice(new BigDecimal(req.getParameter("price")).setScale(2));
         book.setIsbn(req.getParameter("isbn"));
-        book.setCover(Book.Cover.valueOf(req.getParameter("cover_name")));
+        //book.setCover(Book.Cover.valueOf(req.getParameter("cover_name")));
         bookService.create(book);
         req.setAttribute("book", book);
         req.setAttribute("message", "Book has been created");

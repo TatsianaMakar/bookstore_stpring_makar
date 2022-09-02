@@ -13,7 +13,7 @@ public class BookDto {
     private int year;
     private BigDecimal price;
     private String isbn;
-    private Book.Cover cover;
+   // private Book.Cover cover;
 
     public enum Cover {SOFT, HARD, SPECIAL}
 }

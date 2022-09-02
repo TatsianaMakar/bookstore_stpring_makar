@@ -4,6 +4,9 @@ package com.company;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -50,4 +53,21 @@ public class AppConfiguration {
             throw new RuntimeException(e);
         }
     }
+
+    @Bean
+    public EntityManager entityManager() {
+//       EntityManagerFactory factory=null;
+        //  try {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("psql");
+        EntityManager entityManager = factory.createEntityManager();
+       // factory.close();
+        return entityManager;
+        // factory.close();
+        // } finally {
+        //             if (factory != null) {
+        // factory.close();
+//            }
+        // }
+    }
+
 }

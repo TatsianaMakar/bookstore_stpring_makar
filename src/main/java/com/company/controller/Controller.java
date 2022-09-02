@@ -1,6 +1,7 @@
 package com.company.controller;
 
 import com.company.AppConfiguration;
+import jakarta.persistence.EntityManagerFactory;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

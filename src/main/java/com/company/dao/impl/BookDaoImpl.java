@@ -70,7 +70,7 @@ public class BookDaoImpl implements BookDao {
             ps.setInt(3, book.getYear());
             ps.setBigDecimal(4, book.getPrice());
             ps.setString(5, book.getIsbn());
-            ps.setString(6, String.valueOf(book.getCover()));
+            //ps.setString(6, String.valueOf(book.getCover()));
             return ps;
         }, keyHolder);
         Number number = keyHolder.getKey();
@@ -121,7 +121,7 @@ public class BookDaoImpl implements BookDao {
         map.put("year", book.getYear());
         map.put("price", book.getPrice());
         map.put("isbn", book.getIsbn());
-        map.put("cover_name", String.valueOf(book.getCover()));
+        //map.put("cover_name", String.valueOf(book.getCover()));
         namedJdbcTemplate.update(UPDATE_BY_ID_NAMED, map);
         return findById(book.getId());
     }
@@ -144,7 +144,7 @@ public class BookDaoImpl implements BookDao {
         bookDto.setYear(rs.getInt("year"));
         bookDto.setPrice(rs.getBigDecimal("price"));
         bookDto.setIsbn(rs.getString("isbn"));
-        bookDto.setCover(Book.Cover.valueOf(rs.getString("cover_name")));
+        //bookDto.setCover(Book.Cover.valueOf(rs.getString("cover_name")));
         return bookDto;
     }
 }
