@@ -18,7 +18,7 @@
     <label>ISBN: </label>
     <input type="text" name="isbn">
     <label>cover: </label>
-    <input type="text" name="cover_name">
+    <input type="text" name="cover">
 
     <input type="submit" value="Save">
 </form>

@@ -2,13 +2,13 @@ DROP TABLE IF EXISTS order_item;
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS status;
 DROP TABLE IF EXISTS books;
-DROP TABLE IF EXISTS covers;
+-- DROP TABLE IF EXISTS covers;
 DROP TABLE IF EXISTS users;
 
-CREATE TABLE IF NOT EXISTS covers (
-    id BIGSERIAL PRIMARY KEY,
-    cover_name VARCHAR(20)
-);
+-- CREATE TABLE IF NOT EXISTS covers (
+--     id BIGSERIAL PRIMARY KEY,
+--     cover_name VARCHAR(20)
+-- );
 
 CREATE TABLE IF NOT EXISTS books (
     id BIGSERIAL PRIMARY KEY,
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS books (
     year INTEGER,
     price DECIMAL (4,2),
     isbn CHAR(17),
-    cover_id BIGINT REFERENCES covers,
+    cover CHAR(10),
     deleted BOOLEAN NOT NULL DEFAULT FALSE
 );
 

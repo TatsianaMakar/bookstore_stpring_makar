@@ -1,10 +1,8 @@
 package com.company.repository.impl;
 
-import com.company.dao.BookDao;
 import com.company.dao.OrderDao;
 import com.company.dao.OrderItemDao;
 import com.company.dao.UserDao;
-import com.company.dao.dto.BookDto;
 import com.company.dao.dto.OrderDto;
 import com.company.dao.dto.UserDto;
 import com.company.dao.entity.Book;
@@ -23,7 +21,7 @@ import java.util.List;
 public class OrderRepositoryImpl implements OrderRepository {
     private final OrderDao orderDao;
     private final UserDao userDao;
-    private final BookDao bookDao;
+    //private final BookDao bookDao;
     private final OrderItemDao orderItemDao;
     private final ObjectMapper mapper;
 
@@ -96,9 +94,9 @@ public class OrderRepositoryImpl implements OrderRepository {
                     OrderItem entityItem = mapper.toEntity(dtoItem);
                     entityItem.setOrder(entity);
                     Long bookId = dtoItem.getBookId();
-                    BookDto bookDto = bookDao.findById(bookId);
-                    Book book = mapper.toEntity(bookDto);
-                    entityItem.setBook(book);
+                    //BookDto bookDto = bookDao.findById(bookId);
+                    //Book book = mapper.toEntity(bookDto);
+                    //entityItem.setBook(book);
                     return entityItem;
                 }).toList();
         return items;

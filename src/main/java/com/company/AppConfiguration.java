@@ -1,7 +1,5 @@
 package com.company;
 
-//import com.company.dao.connection.DataSource;
-
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import jakarta.persistence.EntityManager;
@@ -56,18 +54,9 @@ public class AppConfiguration {
 
     @Bean
     public EntityManager entityManager() {
-//       EntityManagerFactory factory=null;
-        //  try {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("psql");
         EntityManager entityManager = factory.createEntityManager();
-       // factory.close();
         return entityManager;
-        // factory.close();
-        // } finally {
-        //             if (factory != null) {
-        // factory.close();
-//            }
-        // }
     }
 
 }
