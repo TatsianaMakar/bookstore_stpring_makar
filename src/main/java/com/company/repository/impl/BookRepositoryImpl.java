@@ -14,8 +14,6 @@ public class BookRepositoryImpl implements BookRepository {
 
     @Autowired
     public BookRepositoryImpl(EntityManager entityManager) {
-
-
         this.entityManager = entityManager;
     }
 

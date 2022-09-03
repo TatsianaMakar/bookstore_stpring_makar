@@ -2,8 +2,6 @@ package com.company.repository.impl;
 
 import com.company.dao.dto.OrderDto;
 import com.company.dao.dto.OrderItemDto;
-import com.company.dao.dto.UserDto;
-import com.company.dao.entity.Book;
 import com.company.dao.entity.Order;
 import com.company.dao.entity.OrderItem;
 import com.company.dao.entity.User;
@@ -35,23 +33,23 @@ public class ObjectMapper {
 //        return entity;
 //    }
 
-    public UserDto toDto(User entity) {
-        UserDto dto = new UserDto();
-        dto.setId(entity.getId());
-        dto.setUserName(entity.getUserName());
-        dto.setUserEmail(entity.getUserEmail());
-        dto.setUserPassword(entity.getUserPassword());
-        return dto;
-    }
+//    public UserDto toDto(User entity) {
+//        UserDto dto = new UserDto();
+//        dto.setId(entity.getId());
+//        dto.setUserName(entity.getUserName());
+//        dto.setUserEmail(entity.getUserEmail());
+//        dto.setUserPassword(entity.getUserPassword());
+//        return dto;
+//    }
 
-    public User toEntity(UserDto dto) {
-        User entity = new User();
-        entity.setId(dto.getId());
-        entity.setUserName(dto.getUserName());
-        entity.setUserEmail(dto.getUserEmail());
-        entity.setUserPassword(dto.getUserPassword());
-        return entity;
-    }
+//    public User toEntity(UserDto dto) {
+//        User entity = new User();
+//        entity.setId(dto.getId());
+//        entity.setUserName(dto.getUserName());
+//        entity.setUserEmail(dto.getUserEmail());
+//        entity.setUserPassword(dto.getUserPassword());
+//        return entity;
+//    }
 
     public Order toEntity(OrderDto dto) {
         Order entity = new Order();

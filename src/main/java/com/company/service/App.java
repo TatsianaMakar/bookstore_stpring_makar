@@ -13,7 +13,7 @@ public class App {
         try {
             init();
             EntityManager entityManager = factory.createEntityManager();
-            Book book=entityManager.find(Book.class,3L);
+            Book book = entityManager.find(Book.class, 3L);
             System.out.println(book);
 
         } finally {

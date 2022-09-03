@@ -2,7 +2,7 @@ package com.company.dao.impl;
 
 import com.company.dao.OrderDao;
 import com.company.dao.OrderItemDao;
-import com.company.dao.UserDao;
+//import com.company.dao.UserDao;
 import com.company.dao.dto.OrderDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -16,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderDaoImpl implements OrderDao {
     private final JdbcTemplate jdbcTemplate;
-    private final UserDao userDao;
+    //private final UserDao userDao;
     private final OrderItemDao orderItemDao;
 
     private static final String GET_BY_ID = """

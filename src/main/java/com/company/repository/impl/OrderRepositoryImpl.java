@@ -2,10 +2,10 @@ package com.company.repository.impl;
 
 import com.company.dao.OrderDao;
 import com.company.dao.OrderItemDao;
-import com.company.dao.UserDao;
+//import com.company.dao.UserDao;
 import com.company.dao.dto.OrderDto;
-import com.company.dao.dto.UserDto;
-import com.company.dao.entity.Book;
+//import com.company.dao.dto.UserDto;
+//import com.company.dao.entity.Book;
 import com.company.dao.entity.Order;
 import com.company.dao.entity.OrderItem;
 import com.company.dao.entity.User;
@@ -20,7 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderRepositoryImpl implements OrderRepository {
     private final OrderDao orderDao;
-    private final UserDao userDao;
+    //private final UserDao userDao;
     //private final BookDao bookDao;
     private final OrderItemDao orderItemDao;
     private final ObjectMapper mapper;
@@ -39,9 +39,9 @@ public class OrderRepositoryImpl implements OrderRepository {
         }
         Order orderEntity = mapper.toEntity(orderDto);
         Long userId = orderDto.getUserId();
-        UserDto userDto = userDao.findById(userId);
-        User user = mapper.toEntity(userDto);
-        orderEntity.setUser(user);
+        //UserDto userDto = userDao.findById(userId);
+        // User user = mapper.toEntity(userDto);
+        //orderEntity.setUser(user);
         orderEntity.setTotalCost(totalCost(creatingItems(orderEntity)));
         orderEntity.setItems(creatingItems(orderEntity));
         return orderEntity;
@@ -58,9 +58,9 @@ public class OrderRepositoryImpl implements OrderRepository {
                 .map(dto -> {
                     Order entity = mapper.toEntity(dto);
                     Long userId = dto.getUserId();
-                    UserDto userDto = userDao.findById(userId);
-                    User user = mapper.toEntity(userDto);
-                    entity.setUser(user);
+                    //UserDto userDto = userDao.findById(userId);
+                    //  User user = mapper.toEntity(userDto);
+                    // entity.setUser(user);
                     entity.setTotalCost(totalCost(creatingItems(entity)));
                     entity.setItems(creatingItems(entity));
                     return entity;

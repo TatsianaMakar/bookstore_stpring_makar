@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderItemDaoImpl implements OrderItemDao {
     private final JdbcTemplate jdbcTemplate;
-   // private final BookDao bookDao;
+    // private final BookDao bookDao;
     private static final String GET_BY_ORDER_ID = "SELECT * FROM order_item WHERE order_id=? AND deleted=FALSE";
 
     @Override

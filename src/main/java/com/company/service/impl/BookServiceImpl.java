@@ -46,7 +46,7 @@ public class BookServiceImpl implements BookService {
     public Book create(Book entity) {
         Book book = bookRepository.create(entity);
         validatePrice(book);
-       // validateIsbn(entity);
+        // validateIsbn(entity);
         return book;
     }
 
@@ -54,7 +54,7 @@ public class BookServiceImpl implements BookService {
     public Book update(Book entity) {
         Book book = bookRepository.update(entity);
         validatePrice(book);
-       // validateIsbn(entity);
+        // validateIsbn(entity);
         if (book == null) {
             throw new RuntimeException("Can't find book with");
         }

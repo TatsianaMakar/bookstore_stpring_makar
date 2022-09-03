@@ -16,22 +16,21 @@ public class Book {
     @Column(name = "book_name")
     private String bookName;
 
-    @Column (name = "author")
+    @Column(name = "author")
     private String author;
 
-    @Column (name = "year")
+    @Column(name = "year")
     private int year;
 
-    @Column (name = "price")
+    @Column(name = "price")
     private BigDecimal price;
 
-    @Column (name = "isbn")
+    @Column(name = "isbn")
     private String isbn;
 
-    @Column(name="cover")
+    @Column(name = "cover")
     @Enumerated(EnumType.STRING)
     private Cover cover;
-
 
     public enum Cover {SOFT, HARD, SPECIAL}
 }
