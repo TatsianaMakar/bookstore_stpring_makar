@@ -27,7 +27,7 @@
         <th>Items</th>
         <td>
             <table>
-                <c:forEach items="${requestScope.order.items}" var="item">
+                <c:forEach items="${requestScope.order.orderItems}" var="item">
                     <tr>
                         <td><a href="controller?command=book&id=${item.book.id}">${item.book.bookName}</a></td>
                         <td>$${item.price} x ${item.quantity}</td>

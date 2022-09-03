@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 @Entity(name = "books")
@@ -12,6 +13,17 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
+    @OneToMany(mappedBy = "book", cascade = CascadeType.REFRESH)
+    private List<OrderItem> orderItems;
+
+    @ManyToMany(cascade = {CascadeType.REFRESH,
+            CascadeType.MERGE,
+            CascadeType.REFRESH})
+    @JoinTable(name = "order_item",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "order_id"))
+    private List<Order> orders;
 
     @Column(name = "book_name")
     private String bookName;
@@ -33,4 +45,5 @@ public class Book {
     private Cover cover;
 
     public enum Cover {SOFT, HARD, SPECIAL}
+
 }

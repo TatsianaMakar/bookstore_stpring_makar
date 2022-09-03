@@ -3,6 +3,8 @@ package com.company.dao.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Data
 @Entity(name = "users")
 public class User {
@@ -10,6 +12,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REFRESH)
+    private List<Order> orders;
 
     @Column(name = "user_name")
     private String userName;

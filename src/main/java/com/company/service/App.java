@@ -4,6 +4,7 @@ import com.company.dao.entity.Book;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.criteria.Order;
 
 public class App {
     private static EntityManagerFactory factory = null;
@@ -13,8 +14,10 @@ public class App {
         try {
             init();
             EntityManager entityManager = factory.createEntityManager();
-            Book book = entityManager.find(Book.class, 3L);
-            System.out.println(book);
+//            Book book = entityManager.find(Book.class, 3L);
+//            System.out.println(book);
+            Order order = entityManager.find(Order.class, 2L);
+            System.out.println(order);
 
         } finally {
             tearDown();
