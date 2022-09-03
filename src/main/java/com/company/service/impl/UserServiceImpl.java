@@ -1,5 +1,6 @@
 package com.company.service.impl;
 
+import com.company.dao.entity.Book;
 import com.company.dao.entity.User;
 import com.company.repository.impl.UserRepositoryImpl;
 import com.company.service.UserService;
@@ -43,7 +44,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User create(User entity) {
         User user = userRepository.create(entity);
-        // validateEmail(entity);
+        validateEmail(entity);
         if (entity.getUserPassword() == null) {
             throw new RuntimeException("You should enter the password");
         }
@@ -53,17 +54,19 @@ public class UserServiceImpl implements UserService {
     @Override
     public User update(User entity) {
         User user = userRepository.update(entity);
-        //validateEmail(entity);
+        validateEmail(entity);
         if (user == null) {
             throw new RuntimeException("Can't find user");
         }
         return user;
     }
 
-//    public void validateEmail(User entity) {
-//        User user = userRepository.findById(entity.getId());
-//        if (user != null && Objects.equals(user.getUserEmail(), entity.getUserEmail())) {
-//            throw new RuntimeException("User with email: " + entity.getUserEmail() + " already exist");
-//        }
-//    }
+    public void validateEmail(User entity) {
+        List<User> users = findAll();
+        for (int j = 0; j < users.size() - 1; j++) {
+            if (users.get(j) != null && Objects.equals(users.get(j).getUserEmail(), entity.getUserEmail())) {
+                throw new RuntimeException("User with email: " + entity.getUserEmail() + " already exist");
+            }
+        }
+    }
 }
