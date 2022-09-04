@@ -1,8 +1,3 @@
--- INSERT INTO covers(cover_name)
--- VALUES ('HARD'),
---        ('SOFT'),
---        ('SPECIAL');
-
 INSERT INTO books (book_name, author, year, price, isbn, cover, deleted)
 VALUES ('Book1', 'Author1', 2000, 8.35, '987-0-1234-5680-0', 'HARD', FALSE),
        ('Book2', 'Author2', 2001, 10.35, '987-1-1234-5680-1', 'HARD', FALSE),
@@ -47,22 +42,12 @@ VALUES ('User1', 'Email1', 'Password1', FALSE),
        ('User19', 'Email19', 'Password19', FALSE),
        ('User20', 'Email20', 'Password20', FALSE);
 
-INSERT INTO status (status_name)
-VALUES ('PENDING'),
-       ('CONFIRMED'),
-       ('DELIVERED'),
-       ('CANCELED');
-
-INSERT INTO orders (status_id, user_id, deleted)
-VALUES ((SELECT id FROM status WHERE status_name = 'PENDING'), (SELECT id FROM users WHERE user_name = 'User3'), FALSE),
-       ((SELECT id FROM status WHERE status_name = 'CONFIRMED'), (SELECT id FROM users WHERE user_name = 'User8'),
-        FALSE),
-       ((SELECT id FROM status WHERE status_name = 'DELIVERED'), (SELECT id FROM users WHERE user_name = 'User1'),
-        FALSE),
-       ((SELECT id FROM status WHERE status_name = 'CANCELED'), (SELECT id FROM users WHERE user_name = 'User20'),
-        FALSE),
-       ((SELECT id FROM status WHERE status_name = 'CONFIRMED'), (SELECT id FROM users WHERE user_name = 'User5'),
-        FALSE);
+INSERT INTO orders (status, user_id, deleted)
+VALUES ('PENDING', (SELECT id FROM users WHERE user_name = 'User3'), FALSE),
+       ('CONFIRMED', (SELECT id FROM users WHERE user_name = 'User8'),FALSE),
+       ('DELIVERED', (SELECT id FROM users WHERE user_name = 'User1'),FALSE),
+       ('CANCELED', (SELECT id FROM users WHERE user_name = 'User20'),FALSE),
+       ('CONFIRMED', (SELECT id FROM users WHERE user_name = 'User5'),FALSE);
 
 INSERT INTO order_item (book_id, quantity, price, order_id, deleted)
 VALUES ((SELECT id FROM books WHERE book_name = 'Book7'), 3, (SELECT price FROM books WHERE book_name = 'Book7'), 1,
