@@ -3,21 +3,15 @@ package com.company.repository.impl;
 import com.company.dao.entity.User;
 import com.company.repository.UserRepository;
 import jakarta.persistence.EntityManager;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
+@RequiredArgsConstructor
 public class UserRepositoryImpl implements UserRepository {
-
     private final EntityManager entityManager;
-
-    @Autowired
-    public UserRepositoryImpl(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
-
 
     @Override
     public User create(User entity) {

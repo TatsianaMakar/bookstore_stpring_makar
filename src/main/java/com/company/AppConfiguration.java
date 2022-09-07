@@ -12,10 +12,13 @@ import org.springframework.context.annotation.Configuration;
 public class AppConfiguration {
 
     @Bean
+    public EntityManagerFactory entityManagerFactory() {
+        return Persistence.createEntityManagerFactory("psql");
+    }
+
+    @Bean
     public EntityManager entityManager() {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("psql");
-        EntityManager entityManager = factory.createEntityManager();
-        return entityManager;
+        return entityManagerFactory().createEntityManager();
     }
 
 }

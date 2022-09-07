@@ -3,19 +3,16 @@ package com.company.repository.impl;
 import com.company.dao.entity.Book;
 import com.company.repository.BookRepository;
 import jakarta.persistence.EntityManager;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
+@RequiredArgsConstructor
 public class BookRepositoryImpl implements BookRepository {
-    private final EntityManager entityManager;
 
-    @Autowired
-    public BookRepositoryImpl(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
+    private final EntityManager entityManager;
 
     @Override
     public Book create(Book entity) {
