@@ -20,7 +20,7 @@
             <td>${order.status}</td>
             <td>
                 <table>
-                    <c:forEach items="${order.items}" var="item">
+                    <c:forEach items="${order.orderItems}" var="item">
                         <tr>
                             <td><a href="controller?command=book&id=${item.book.id}">${item.book.bookName}</a></td>
                             <td>$${item.price} x ${item.quantity}</td>

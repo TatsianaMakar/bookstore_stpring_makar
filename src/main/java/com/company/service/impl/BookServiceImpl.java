@@ -68,10 +68,13 @@ public class BookServiceImpl implements BookService {
     }
 
     public void validateIsbn(Book entity) {
-        Book book = bookRepository.findById(entity.getId());
-        if (book != null && Objects.equals(book.getIsbn(), entity.getIsbn())) {
-            throw new RuntimeException("Book with isbn: " + entity.getIsbn() + " already exist");
+        List<Book> books = findAll();
+        for (int j = 0; j < books.size() - 1; j++) {
+            if (books.get(j) != null && Objects.equals(books.get(j).getIsbn(), entity.getIsbn())) {
+                throw new RuntimeException("Book with isbn: " + entity.getIsbn() + " already exist");
+            }
         }
     }
-
 }
+
+

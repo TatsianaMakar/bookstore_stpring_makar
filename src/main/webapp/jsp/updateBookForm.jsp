@@ -19,7 +19,7 @@
     <label>ISBN: </label>
     <input type="text" name="isbn" value="${requestScope.book.isbn}">
     <label>cover: </label>
-    <input type="text" name="cover_name" value="${requestScope.book.cover}">
+    <input type="text" name="cover" value="${requestScope.book.cover}">
 
     <input type="submit" value="Save">
 

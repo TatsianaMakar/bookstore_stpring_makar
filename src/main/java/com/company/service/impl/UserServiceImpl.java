@@ -1,5 +1,6 @@
 package com.company.service.impl;
 
+import com.company.dao.entity.Book;
 import com.company.dao.entity.User;
 import com.company.repository.impl.UserRepositoryImpl;
 import com.company.service.UserService;
@@ -61,9 +62,11 @@ public class UserServiceImpl implements UserService {
     }
 
     public void validateEmail(User entity) {
-        User user = userRepository.findById(entity.getId());
-        if (user != null && Objects.equals(user.getUserEmail(), entity.getUserEmail())) {
-            throw new RuntimeException("User with email: " + entity.getUserEmail() + " already exist");
+        List<User> users = findAll();
+        for (int j = 0; j < users.size() - 1; j++) {
+            if (users.get(j) != null && Objects.equals(users.get(j).getUserEmail(), entity.getUserEmail())) {
+                throw new RuntimeException("User with email: " + entity.getUserEmail() + " already exist");
+            }
         }
     }
 }
