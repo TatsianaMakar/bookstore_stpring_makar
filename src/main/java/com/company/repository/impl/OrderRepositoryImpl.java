@@ -9,11 +9,12 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
-
+@Transactional
 public class OrderRepositoryImpl implements OrderRepository {
     @PersistenceContext
     private EntityManager entityManager;
