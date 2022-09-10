@@ -2,19 +2,18 @@ package com.company.repository.impl;
 
 import com.company.dao.entity.User;
 import com.company.repository.UserRepository;
-//import jakarta.persistence.EntityManager;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @Transactional
-//@RequiredArgsConstructor
 public class UserRepositoryImpl implements UserRepository {
+
     @PersistenceContext
     private EntityManager entityManager;
 

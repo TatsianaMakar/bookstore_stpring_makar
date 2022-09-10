@@ -1,6 +1,5 @@
 package com.company.service.impl;
 
-import com.company.dao.entity.Book;
 import com.company.dao.entity.User;
 import com.company.repository.impl.UserRepositoryImpl;
 import com.company.service.UserService;
