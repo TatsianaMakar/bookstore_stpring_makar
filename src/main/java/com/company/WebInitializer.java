@@ -13,7 +13,7 @@ public class WebInitializer implements WebApplicationInitializer {
     @Override
     public void onStartup(ServletContext servletContext) {
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-        context.register(ContextConfig.class);
+        context.register(ApplicationConfig.class);
 
         DispatcherServlet servlet = new DispatcherServlet(context);
         ServletRegistration.Dynamic registration = servletContext.addServlet("DispatcherServlet", servlet);
@@ -21,4 +21,3 @@ public class WebInitializer implements WebApplicationInitializer {
         registration.addMapping("/");
     }
 }
-

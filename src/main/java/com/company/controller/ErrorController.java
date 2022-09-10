@@ -15,3 +15,4 @@ public class ErrorController {
         return "error";
     }
 }
+
