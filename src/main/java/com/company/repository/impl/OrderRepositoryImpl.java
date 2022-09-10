@@ -3,18 +3,20 @@ package com.company.repository.impl;
 import com.company.dao.entity.Order;
 import com.company.dao.entity.OrderItem;
 import com.company.repository.OrderRepository;
-import jakarta.persistence.EntityManager;
+//import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
-@RequiredArgsConstructor
-public class OrderRepositoryImpl implements OrderRepository {
 
-    private final EntityManager entityManager;
+public class OrderRepositoryImpl implements OrderRepository {
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     public Order create(Order entity) {

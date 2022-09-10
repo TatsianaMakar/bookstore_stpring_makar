@@ -2,17 +2,19 @@ package com.company.repository.impl;
 
 import com.company.dao.entity.Book;
 import com.company.repository.BookRepository;
-import jakarta.persistence.EntityManager;
+//import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
-@RequiredArgsConstructor
-public class BookRepositoryImpl implements BookRepository {
 
-    private final EntityManager entityManager;
+public class BookRepositoryImpl implements BookRepository {
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     public Book create(Book entity) {
