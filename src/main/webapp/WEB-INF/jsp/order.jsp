@@ -14,7 +14,7 @@
            <th>Id</th>
            <td><a href="controller?command=order&id=${order.id}">${order.id}</a></td>
        </tr>
-       <tr>
+<tr>
            <th>User</th>
            <td><a href="controller?command=user&id=${order.user.id}">${order.user.userEmail}</a>
            </td>
@@ -27,6 +27,17 @@
            <th>Items</th>
            <td>
                <table>
+
+               <c:forEach items="${order.orderItems}" var="item" varStatus="counter">
+                       <tr>
+                           <td>${counter.count}</td>
+                           <td><a href="controller?command=book&id=${item.book.id}">${item.book.bookName}</a></td>
+
+                       </tr>
+                   </c:forEach>
+
+
+
                    <c:forEach items="${order.orderItems}" var="item">
                        <tr>
                            <td><a href="controller?command=book&id=${item.book.id}">${item.book.bookName}</a></td>
