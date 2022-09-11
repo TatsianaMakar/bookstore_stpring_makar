@@ -1,6 +1,7 @@
 package com.company.repository.impl;
 
 import com.company.dao.entity.Book;
+import com.company.dao.entity.User;
 import com.company.repository.BookRepository;
 import org.springframework.stereotype.Repository;
 
@@ -44,12 +45,13 @@ public class BookRepositoryImpl implements BookRepository {
 
     @Override
     public boolean delete(Long id) {
-        Book book = entityManager.find(Book.class, id);
+        Book book = findById(id);
         if (book == null) {
             return false;
+        } else {
+            entityManager.remove(book);
+            return true;
         }
-        entityManager.remove(book);
-        return true;
     }
 
     @Override

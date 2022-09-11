@@ -2,6 +2,7 @@ package com.company.repository.impl;
 
 import com.company.dao.entity.Order;
 import com.company.dao.entity.OrderItem;
+import com.company.dao.entity.User;
 import com.company.repository.OrderRepository;
 import org.springframework.stereotype.Repository;
 
@@ -55,12 +56,13 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     @Override
     public boolean delete(Long id) {
-        Order order = entityManager.find(Order.class, id);
+        Order order = findById(id);
         if (order == null) {
             return false;
+        } else {
+            entityManager.remove(order);
+            return true;
         }
-        entityManager.remove(order);
-        return true;
     }
 
     public BigDecimal totalCost(List<OrderItem> items) {

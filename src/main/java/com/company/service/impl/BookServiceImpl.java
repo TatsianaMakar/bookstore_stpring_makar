@@ -43,9 +43,10 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void delete(Long id) {
-        bookRepository.delete(id);
         if (!bookRepository.delete(id)) {
-            throw new ApplicationNotFoundException("No user with id: " + id);
+            throw new ApplicationNotFoundException("No book with id: " + id);
+        } else {
+            bookRepository.delete(id);
         }
     }
 

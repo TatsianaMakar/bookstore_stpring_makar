@@ -1,6 +1,7 @@
 package com.company.controller;
 
 import com.company.dao.entity.Order;
+import com.company.dao.entity.User;
 import com.company.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -61,8 +62,14 @@ public class OrderController {
         return "redirect:/order/" + order.getId();
     }
 
+    @GetMapping("/delete/{id}")
+    public String deleteOrderForm(@PathVariable Long id, Model model) {
+        Order order = orderService.findById(id);
+        model.addAttribute("order", order);
+        return "deleteOrderForm.jsp";
+    }
     @PostMapping("/delete/{id}")
-    public String deleteOrder(@PathVariable Long id) {
+    public String deleteUser(@PathVariable Long id) {
         orderService.delete(id);
         return "delete";
     }

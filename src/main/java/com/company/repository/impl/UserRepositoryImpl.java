@@ -44,12 +44,13 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public boolean delete(Long id) {
-        User user = entityManager.find(User.class, id);
+        User user = findById(id);
         if (user == null) {
             return false;
+        } else {
+            entityManager.remove(user);
+            return true;
         }
-        entityManager.remove(user);
-        return true;
     }
 
     @Override

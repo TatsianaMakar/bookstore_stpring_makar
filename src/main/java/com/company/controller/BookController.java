@@ -1,6 +1,7 @@
 package com.company.controller;
 
 import com.company.dao.entity.Book;
+import com.company.dao.entity.User;
 import com.company.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -61,6 +62,12 @@ public class BookController {
         return "redirect:/book/" + book.getId();
     }
 
+    @GetMapping("/delete/{id}")
+    public String deleteBookForm(@PathVariable Long id, Model model) {
+        Book book = bookService.findById(id);
+        model.addAttribute("book", book);
+        return "deleteBookForm";
+    }
     @PostMapping("/delete/{id}")
     public String deleteBook(@PathVariable Long id) {
         bookService.delete(id);

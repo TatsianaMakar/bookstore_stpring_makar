@@ -46,9 +46,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void delete(Long id) {
-        userRepository.delete(id);
         if (!userRepository.delete(id)) {
             throw new ApplicationNotFoundException("No user with id: " + id);
+        } else {
+            userRepository.delete(id);
         }
     }
 

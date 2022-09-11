@@ -41,9 +41,10 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void delete(Long id) {
-        orderRepository.delete(id);
         if (!orderRepository.delete(id)) {
-            throw new ApplicationNotFoundException("No user with id: " + id);
+            throw new ApplicationNotFoundException("No order with id: " + id);
+        } else {
+            orderRepository.delete(id);
         }
     }
 
