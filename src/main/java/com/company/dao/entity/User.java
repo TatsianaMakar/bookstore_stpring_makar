@@ -2,12 +2,9 @@ package com.company.dao.entity;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "users")
@@ -17,8 +14,8 @@ public class User {
     @Column(name = "id")
     private Long id;
 
-//    @OneToMany(mappedBy = "user", cascade = CascadeType.REFRESH)
-//    private List<Order> orders;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REFRESH)
+    private List<Order> orders;
 
     @Column(name = "user_name")
     private String userName;

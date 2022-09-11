@@ -14,16 +14,16 @@ public class Book {
     @Column(name = "id")
     private Long id;
 
-//    @OneToMany(mappedBy = "book", cascade = CascadeType.REFRESH)
-//    private List<OrderItem> orderItems;
+    @OneToMany(mappedBy = "book", cascade = CascadeType.REFRESH)
+    private List<OrderItem> orderItems;
 
-//    @ManyToMany(cascade = {CascadeType.REFRESH,
-//            CascadeType.MERGE,
-//            CascadeType.REFRESH})
-//    @JoinTable(name = "order_item",
-//            joinColumns = @JoinColumn(name = "book_id"),
-//            inverseJoinColumns = @JoinColumn(name = "order_id"))
-//    private List<Order> orders;
+    @ManyToMany(cascade = {CascadeType.REFRESH,
+            CascadeType.MERGE,
+            CascadeType.REFRESH})
+    @JoinTable(name = "order_item",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "order_id"))
+    private List<Order> orders;
 
     @Column(name = "book_name")
     private String bookName;

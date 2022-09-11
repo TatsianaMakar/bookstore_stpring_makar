@@ -71,4 +71,59 @@
 //    }
 //}
 
+package com.company.repository.impl;
 
+import com.company.dao.entity.Order;
+import com.company.repository.OrderRepository;
+import org.springframework.stereotype.Repository;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+import java.util.List;
+
+@Repository
+@Transactional
+public class OrderRepositoryImpl implements OrderRepository {
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    @Override
+    public Order create(Order order) {
+//        Long id = order.getId();
+//        if (id == null) {
+//            entityManager.persist(order);
+//        } else {
+//            entityManager.merge(order);
+//        }
+//        return order;
+        return null;
+    }
+
+    @Override
+    public Order findById(Long id) {
+        return entityManager.find(Order.class, id);
+    }
+
+    @Override
+    public Long countAll() {
+        return null;
+    }
+
+    @Override
+    public List<Order> findAll() {
+        return entityManager.createQuery("from orders", Order.class).getResultList();
+    }
+
+    @Override
+    public boolean delete(Long id) {
+        Order order = entityManager.find(Order.class, id);
+        if (order == null) {
+            return false;
+        }
+        entityManager.remove(order);
+        return true;
+    }
+
+}

@@ -11,6 +11,7 @@
     <li><a href="${pageContext.request.contextPath}/user/create">Create User</a></li>
     <li><a href="${pageContext.request.contextPath}/book/getAll">All Books</a></li>
     <li><a href="${pageContext.request.contextPath}/book/create">Create Book</a></li>
+    <li><a href="${pageContext.request.contextPath}/order/getAll">All Orders</a></li>
 </ul>
 </body>
 </html>

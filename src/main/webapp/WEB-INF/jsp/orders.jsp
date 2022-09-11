@@ -13,6 +13,8 @@
         <th>Items</th>
         <th>TotalCost</th>
     </tr>
+
+
     <c:forEach items="${requestScope.orders}" var="order" varStatus="counter">
         <tr>
             <td>${counter.count}</td>
@@ -31,6 +33,9 @@
             <td>${order.totalCost}</td>
         </tr>
     </c:forEach>
+
+
+
 </table>
 </body>
 </html>
