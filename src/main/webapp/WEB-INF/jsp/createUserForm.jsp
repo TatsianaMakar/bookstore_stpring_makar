@@ -4,19 +4,14 @@
     <title>Create User</title>
 </head>
 <body>
-<form method="post" action="controller">
-    <input type="hidden" name="command" value="create_user">
-    <input type="hidden" name="id">
-    <label>Name:
-        <input type="text" name="user_name">
-    </label>
-    <label>Email:
-        <input type="text" name="user_email">
-    </label>
-    <label>Password:
-        <input type="text" name="user_password">
-    </label>
-    <input type="submit" value="Save">
+<ul>
+    <li><a href="/bookstore/">Home</a></li>
+</ul>
+<form class="login-form" action="/bookstore/user/create" method="post">
+    <label>Name: <input name="userName" type="text"></label>
+    <label>Email: <input name="userEmail" type="text"></label>
+    <label>Password: <input name="userPassword" type="text"></label>
+    <button>Save</button>
 </form>
 
 </body>

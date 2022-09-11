@@ -4,21 +4,13 @@
     <title>Update User</title>
 </head>
 <body>
-<form method="post" action="controller">
+<form  class="login-form" action="/bookstore/user/edit/${user.id}" method="post">
     <input type="hidden" name="command" value="update_user">
-    <input type="hidden" name="id" value="${requestScope.user.id}">
-    <label>Name:
-        <input type="text" name="user_name" value="${requestScope.user.userName}">
-    </label>
-    <label>Email:
-        <input type="text" name="user_email" value="${requestScope.user.userName}">
-    </label>
-    <label>Password:
-        <input type="text" name="user_password" value="${requestScope.user.userName}">
-    </label>
-    <input type="submit" value="Save">
-
+    <input type="hidden" name="id" value="${user.id}">
+    <label>Login: <input name="userName" type="text" value="${user.userName}"></label>
+       <label>Password: <input name="userEmail" type="text" value="${user.userEmail}"></label>
+       <label>Password: <input name="userPassword" type="text" value="${user.userPassword}"></label>
+       <button>Save</button>
 </form>
-
 </body>
 </html>

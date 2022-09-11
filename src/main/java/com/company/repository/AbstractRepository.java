@@ -11,7 +11,5 @@ public interface AbstractRepository<K, T> {
 
     List<T> findAll();
 
-    T update(T entity);
-
     boolean delete(K id);
 }

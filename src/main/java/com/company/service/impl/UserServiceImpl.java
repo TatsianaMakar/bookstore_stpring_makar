@@ -1,7 +1,7 @@
 package com.company.service.impl;
 
 import com.company.dao.entity.User;
-import com.company.repository.impl.UserRepositoryImpl;
+import com.company.repository.UserRepository;
 import com.company.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,16 +11,11 @@ import java.util.Objects;
 
 @Service
 public class UserServiceImpl implements UserService {
-    private final UserRepositoryImpl userRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepositoryImpl userRepository) {
+    public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
-    }
-
-    @Override
-    public List<User> findAll() {
-        return userRepository.findAll();
     }
 
     @Override
@@ -33,31 +28,26 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User create(User user) {
+//        User user = userRepository.create(user);
+//        validateEmail(entity);
+//        if (entity.getUserPassword() == null) {
+//            throw new RuntimeException("You should enter the password");
+//        }
+        return userRepository.create(user);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    @Override
     public void delete(Long id) {
-        boolean success = userRepository.delete(id);
-        if (!success) {
-            throw new RuntimeException("Can't find user with id=" + id);
+        userRepository.delete(id);
+        if (!userRepository.delete(id)) {
+            throw new RuntimeException("No user with id: " + id);
         }
-    }
-
-    @Override
-    public User create(User entity) {
-        User user = userRepository.create(entity);
-        validateEmail(entity);
-        if (entity.getUserPassword() == null) {
-            throw new RuntimeException("You should enter the password");
-        }
-        return user;
-    }
-
-    @Override
-    public User update(User entity) {
-        User user = userRepository.update(entity);
-        validateEmail(entity);
-        if (user == null) {
-            throw new RuntimeException("Can't find user");
-        }
-        return user;
     }
 
     public void validateEmail(User entity) {
@@ -69,3 +59,4 @@ public class UserServiceImpl implements UserService {
         }
     }
 }
+

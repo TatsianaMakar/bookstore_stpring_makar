@@ -12,7 +12,7 @@
     </tr>
     <tr>
         <th>Id</th>
-        <th>${requestScope.user.id}</th>
+        <th>${user.id}</th>
     </tr>
     <tr>
         <th>Name</th>

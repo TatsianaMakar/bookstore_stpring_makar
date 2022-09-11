@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 @Transactional
@@ -18,11 +17,14 @@ public class UserRepositoryImpl implements UserRepository {
     private EntityManager entityManager;
 
     @Override
-    public User create(User entity) {
-        entityManager.getTransaction().begin();
-        entityManager.persist(entity);
-        entityManager.getTransaction().commit();
-        return entity;
+    public User create(User user) {
+        Long id = user.getId();
+        if (id == null) {
+            entityManager.persist(user);
+        } else {
+            entityManager.merge(user);
+        }
+        return user;
     }
 
     @Override
@@ -37,25 +39,16 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public List<User> findAll() {
-        entityManager.getTransaction().begin();
-        List<User> users = entityManager.createQuery("from users", User.class).getResultList();
-        entityManager.getTransaction().commit();
-        return users;
-    }
-
-    @Override
-    public User update(User entity) {
-        entityManager.getTransaction().begin();
-        entityManager.merge(entity);
-        entityManager.getTransaction().commit();
-        return entity;
+        return entityManager.createQuery("from User", User.class).getResultList();
     }
 
     @Override
     public boolean delete(Long id) {
-        entityManager.getTransaction().begin();
-        entityManager.remove(findById(id));
-        entityManager.getTransaction().commit();
+        User user = entityManager.find(User.class, id);
+        if (user == null) {
+            return false;
+        }
+        entityManager.remove(user);
         return true;
     }
 
