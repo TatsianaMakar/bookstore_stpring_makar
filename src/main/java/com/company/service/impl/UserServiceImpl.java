@@ -3,6 +3,8 @@ package com.company.service.impl;
 import com.company.dao.entity.User;
 import com.company.repository.UserRepository;
 import com.company.service.UserService;
+import com.company.service.exception.ApplicationNotFoundException;
+import com.company.service.exception.ApplicationValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +24,7 @@ public class UserServiceImpl implements UserService {
     public User findById(Long id) {
         User user = userRepository.findById(id);
         if (user == null) {
-            throw new RuntimeException("Can't find user with id=" + id);
+            throw new ApplicationNotFoundException("Can't find user with id=" + id);
         }
         return user;
     }
@@ -32,7 +34,7 @@ public class UserServiceImpl implements UserService {
         User newUser = userRepository.create(user);
         validateEmail(user);
         if (user.getUserPassword() == null) {
-            throw new RuntimeException("You should enter the password");
+            throw new ApplicationValidationException("You should enter the password");
         }
         return newUser;
     }
@@ -46,7 +48,7 @@ public class UserServiceImpl implements UserService {
     public void delete(Long id) {
         userRepository.delete(id);
         if (!userRepository.delete(id)) {
-            throw new RuntimeException("No user with id: " + id);
+            throw new ApplicationNotFoundException("No user with id: " + id);
         }
     }
 
@@ -54,7 +56,7 @@ public class UserServiceImpl implements UserService {
         List<User> users = findAll();
         for (int j = 0; j < users.size() - 1; j++) {
             if (users.get(j) != null && Objects.equals(users.get(j).getUserEmail(), entity.getUserEmail())) {
-                throw new RuntimeException("User with email: " + entity.getUserEmail() + " already exist");
+                throw new ApplicationValidationException("User with email: " + entity.getUserEmail() + " already exist");
             }
         }
     }

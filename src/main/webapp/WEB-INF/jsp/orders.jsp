@@ -15,7 +15,7 @@
     </tr>
 
 
-    <c:forEach items="${requestScope.orders}" var="order" varStatus="counter">
+    <c:forEach items="${orders}" var="order" varStatus="counter">
         <tr>
             <td>${counter.count}</td>
             <td><a href="controller?command=user&id=${order.id}">${order.user.userEmail}</a></td>

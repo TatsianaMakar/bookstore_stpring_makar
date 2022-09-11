@@ -27,19 +27,9 @@
            <th>Items</th>
            <td>
                <table>
-
                <c:forEach items="${order.orderItems}" var="item" varStatus="counter">
                        <tr>
                            <td>${counter.count}</td>
-                           <td><a href="controller?command=book&id=${item.book.id}">${item.book.bookName}</a></td>
-
-                       </tr>
-                   </c:forEach>
-
-
-
-                   <c:forEach items="${order.orderItems}" var="item">
-                       <tr>
                            <td><a href="controller?command=book&id=${item.book.id}">${item.book.bookName}</a></td>
                            <td>$${item.price} x ${item.quantity}</td>
                        </tr>

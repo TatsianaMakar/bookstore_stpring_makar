@@ -3,6 +3,8 @@ package com.company.service.impl;
 import com.company.dao.entity.Book;
 import com.company.repository.BookRepository;
 import com.company.service.BookService;
+import com.company.service.exception.ApplicationNotFoundException;
+import com.company.service.exception.ApplicationValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +24,7 @@ public class BookServiceImpl implements BookService {
     public Book findById(Long id) {
         Book book = bookRepository.findById(id);
         if (book == null) {
-            throw new RuntimeException("Can't find book with id=" + id);
+            throw new ApplicationNotFoundException("Can't find book with id=" + id);
         }
         return book;
     }
@@ -43,7 +45,7 @@ public class BookServiceImpl implements BookService {
     public void delete(Long id) {
         bookRepository.delete(id);
         if (!bookRepository.delete(id)) {
-            throw new RuntimeException("No user with id: " + id);
+            throw new ApplicationNotFoundException("No user with id: " + id);
         }
     }
 
@@ -51,7 +53,7 @@ public class BookServiceImpl implements BookService {
         List<Book> books = findAll();
         for (int j = 0; j < books.size() - 1; j++) {
             if (books.get(j) != null && Objects.equals(books.get(j).getIsbn(), entity.getIsbn())) {
-                throw new RuntimeException("Book with isbn: " + entity.getIsbn() + " already exist");
+                throw new ApplicationValidationException("Book with isbn: " + entity.getIsbn() + " already exist");
             }
         }
     }
