@@ -29,12 +29,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User create(User user) {
-//        User user = userRepository.create(user);
-//        validateEmail(entity);
-//        if (entity.getUserPassword() == null) {
-//            throw new RuntimeException("You should enter the password");
-//        }
-        return userRepository.create(user);
+        User newUser = userRepository.create(user);
+        validateEmail(user);
+        if (user.getUserPassword() == null) {
+            throw new RuntimeException("You should enter the password");
+        }
+        return newUser;
     }
 
     @Override

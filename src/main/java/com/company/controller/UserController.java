@@ -46,7 +46,6 @@ public class UserController {
     public String createUser(@ModelAttribute User user) {
         userService.create(user);
         return "redirect:/user/" + user.getId();
-        //return "users";
     }
 
     @GetMapping("/edit/{id}")

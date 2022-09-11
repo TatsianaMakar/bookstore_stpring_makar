@@ -12,7 +12,7 @@
         <th>Name</th>
         <th>Email</th>
     </tr>
-    <c:forEach items="${requestScope.users}" var="user" varStatus="counter">
+    <c:forEach items="${users}" var="user" varStatus="counter">
         <tr>
             <td>${counter.count}</td>
             <td><a href="controller?command=user&id=${user.id}">${user.userName}</a></td>

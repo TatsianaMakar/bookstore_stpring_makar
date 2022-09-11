@@ -12,7 +12,7 @@
         <th>Title</th>
         <th>Author</th>
     </tr>
-    <c:forEach items="${requestScope.books}" var="book" varStatus="counter">
+    <c:forEach items="${books}" var="book" varStatus="counter">
         <tr>
             <td>${counter.count}</td>
             <td><a href="controller?command=book&id=${book.id}">${book.bookName}</a></td>

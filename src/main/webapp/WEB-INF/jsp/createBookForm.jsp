@@ -4,23 +4,17 @@
     <title>Create Book</title>
 </head>
 <body>
-<form method="post" action="controller">
-    <input type="hidden" name="command" value="create_book">
-    <input type="hidden" name="id">
-    <label>Name:</label>
-    <input type="text" name="book_name">
-    <label>Author: </label>
-    <input type="text" name="author">
-    <label>Year: </label>
-    <input type="text" name="year">
-    <label>Price: </label>
-    <input type="text" name="price">
-    <label>ISBN: </label>
-    <input type="text" name="isbn">
-    <label>cover: </label>
-    <input type="text" name="cover">
-
-    <input type="submit" value="Save">
+<ul>
+    <li><a href="/bookstore/">Home</a></li>
+</ul>
+<form class="login-form" action="/bookstore/book/create" method="post">
+    <label>BookName: <input name="bookName" type="text"></label>
+    <label>Author: <input name="author" type="text"></label>
+    <label>Year: <input name="year" type="text"></label>
+    <label>Price: <input name="price" type="text"></label>
+    <label>ISBN: <input name="isbn" type="text"></label>
+    <label>Cover: <input name="cover" type="text"></label>
+    <button>Save</button>
 </form>
 
 </body>

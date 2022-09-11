@@ -4,26 +4,16 @@
     <title>Update book</title>
 </head>
 <body>
-<form method="post" action="controller">
+<form  class="login-form" action="/bookstore/book/edit/${book.id}" method="post">
     <input type="hidden" name="command" value="update_book">
-    <input type="hidden" name="id" value="${requestScope.book.id}">
-    <label>Name:</label>
-    <input type="text" name="book_name" value="${requestScope.book.bookName}">
-
-    <label>Author: </label>
-    <input type="text" name="author" value="${requestScope.book.author}">
-    <label>Year: </label>
-    <input type="text" name="year" value="${requestScope.book.year}">
-    <label>Price: </label>
-    <input type="text" name="price" value="${requestScope.book.price}">
-    <label>ISBN: </label>
-    <input type="text" name="isbn" value="${requestScope.book.isbn}">
-    <label>cover: </label>
-    <input type="text" name="cover" value="${requestScope.book.cover}">
-
-    <input type="submit" value="Save">
-
+    <input type="hidden" name="id" value="${book.id}">
+    <label>Login: <input name="bookName" type="text" value="${book.bookName}"></label>
+       <label>Password: <input name="author" type="text" value="${book.author}"></label>
+       <label>Password: <input name="year" type="text" value="${book.year}"></label>
+       <label>Password: <input name="price" type="text" value="${book.price}"></label>
+       <label>Password: <input name="isbn" type="text" value="${book.isbn}"></label>
+       <label>Password: <input name="cover" type="text" value="${book.cover}"></label>
+       <button>Save</button>
 </form>
-
 </body>
 </html>

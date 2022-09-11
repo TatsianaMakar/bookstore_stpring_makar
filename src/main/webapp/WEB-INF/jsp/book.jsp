@@ -12,31 +12,31 @@
     </tr>
     <tr>
         <th>Id</th>
-        <th>${requestScope.book.id}</th>
+        <th>${book.id}</th>
     </tr>
     <tr>
         <th>Title</th>
-        <th>${requestScope.book.bookName}</th>
+        <th>${book.bookName}</th>
     </tr>
     <tr>
         <th>Author</th>
-        <th>${requestScope.book.author}</th>
+        <th>${book.author}</th>
     </tr>
     <tr>
         <th>Year</th>
-        <th>${requestScope.book.year}</th>
+        <th>${book.year}</th>
     </tr>
     <tr>
         <th>Price</th>
-        <th>${requestScope.book.price}</th>
+        <th>${book.price}</th>
     </tr>
     <tr>
         <th>ISBN</th>
-        <th>${requestScope.book.isbn}</th>
+        <th>${book.isbn}</th>
     </tr>
     <tr>
         <th>Cover</th>
-        <th>${requestScope.book.cover}</th>
+        <th>${book.cover}</th>
     </tr>
 </table>
 </body>

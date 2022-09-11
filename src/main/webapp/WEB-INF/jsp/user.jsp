@@ -16,15 +16,15 @@
     </tr>
     <tr>
         <th>Name</th>
-        <th>${requestScope.user.userName}</th>
+        <th>${user.userName}</th>
     </tr>
     <tr>
         <th>Email</th>
-        <th>${requestScope.user.userEmail}</th>
+        <th>${user.userEmail}</th>
     </tr>
     <tr>
         <th>Password</th>
-        <th>${requestScope.user.userPassword}</th>
+        <th>${user.userPassword}</th>
     </tr>
 </table>
 </body>
