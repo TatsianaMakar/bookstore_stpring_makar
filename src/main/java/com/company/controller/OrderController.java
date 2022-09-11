@@ -66,10 +66,10 @@ public class OrderController {
     public String deleteOrderForm(@PathVariable Long id, Model model) {
         Order order = orderService.findById(id);
         model.addAttribute("order", order);
-        return "deleteOrderForm.jsp";
+        return "deleteOrderForm";
     }
     @PostMapping("/delete/{id}")
-    public String deleteUser(@PathVariable Long id) {
+    public String deleteOrder(@PathVariable Long id) {
         orderService.delete(id);
         return "delete";
     }
