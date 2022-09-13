@@ -4,7 +4,7 @@
     <title>Update User</title>
 </head>
 <body>
-<form  class="login-form" action="/bookstore/user/edit/${user.id}" method="post">
+<form  class="login-form" action="/user/edit/${user.id}" method="post">
     <input type="hidden" name="command" value="update_user">
     <input type="hidden" name="id" value="${user.id}">
     <label>Login: <input name="userName" type="text" value="${user.userName}"></label>

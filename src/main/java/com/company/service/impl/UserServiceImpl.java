@@ -61,5 +61,14 @@ public class UserServiceImpl implements UserService {
             }
         }
     }
+
+    @Override
+    public User login(String login, String password) {
+        //String hashedPassword = encryptionService.digest(password);
+        return userRepository.findAll().stream()
+                .filter(u -> u.getUserEmail().equals(login) && u.getUserPassword().equals(password))
+                .findFirst()
+                .orElseThrow(() -> new ApplicationNotFoundException("We have not user with this login"));
+    }
 }
 

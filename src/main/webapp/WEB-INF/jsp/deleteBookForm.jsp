@@ -4,7 +4,7 @@
     <title>Delete book</title>
 </head>
 <body>
-<form  class="login-form" action="/bookstore/book/delete/${book.id}" method="post">
+<form  class="login-form" action="/book/delete/${book.id}" method="post">
     <input type="hidden" name="command" value="delete_book">
     <input type="hidden" name="id" value="${book.id}">
     <label>BookName: <input name="bookName" type="text" value="${book.bookName}"></label>

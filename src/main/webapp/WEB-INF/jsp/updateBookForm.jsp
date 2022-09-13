@@ -4,7 +4,7 @@
     <title>Update book</title>
 </head>
 <body>
-<form  class="login-form" action="/bookstore/book/edit/${book.id}" method="post">
+<form  class="login-form" action="/book/edit/${book.id}" method="post">
     <input type="hidden" name="command" value="update_book">
     <input type="hidden" name="id" value="${book.id}">
     <label>BookName: <input name="bookName" type="text" value="${book.bookName}"></label>

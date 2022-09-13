@@ -5,9 +5,9 @@
 </head>
 <body>
 <ul>
-    <li><a href="/bookstore/">Home</a></li>
+    <li><a href="/">Home</a></li>
 </ul>
-<form class="login-form" action="/bookstore/book/create" method="post">
+<form class="login-form" action="/book/create" method="post">
     <label>BookName: <input name="bookName" type="text"></label>
     <label>Author: <input name="author" type="text"></label>
     <label>Year: <input name="year" type="text"></label>

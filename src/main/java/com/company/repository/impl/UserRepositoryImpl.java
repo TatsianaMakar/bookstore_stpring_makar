@@ -57,4 +57,9 @@ public class UserRepositoryImpl implements UserRepository {
     public User getUserByEmail(String email) {
         return null;
     }
+
+    @Override
+    public User login(String login, String password) {
+        return entityManager.find(User.class, login);
+    }
 }
