@@ -1,4 +1,4 @@
-package com.company.controller;
+package com.company.web.controller;
 
 import com.company.dao.entity.User;
 import com.company.service.UserService;

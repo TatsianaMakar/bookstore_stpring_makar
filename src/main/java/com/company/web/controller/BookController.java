@@ -1,7 +1,6 @@
-package com.company.controller;
+package com.company.web.controller;
 
 import com.company.dao.entity.Book;
-import com.company.dao.entity.User;
 import com.company.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
