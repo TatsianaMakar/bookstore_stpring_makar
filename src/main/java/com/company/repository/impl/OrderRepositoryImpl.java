@@ -2,32 +2,41 @@ package com.company.repository.impl;
 
 import com.company.dao.entity.Order;
 import com.company.dao.entity.OrderItem;
+import com.company.dao.entity.User;
 import com.company.repository.OrderRepository;
-import jakarta.persistence.EntityManager;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
-@RequiredArgsConstructor
+@Transactional
 public class OrderRepositoryImpl implements OrderRepository {
 
-    private final EntityManager entityManager;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
-    public Order create(Order entity) {
+    public Order create(Order order) {
+//        Long id = order.getId();
+//        if (id == null) {
+//            entityManager.persist(order);
+//        } else {
+//            entityManager.merge(order);
+//        }
+//        return order;
         return null;
     }
 
     @Override
     public Order findById(Long id) {
         Order order = entityManager.find(Order.class, id);
-        entityManager.getTransaction().begin();
         order.setTotalCost(totalCost(order.getOrderItems()));
-        entityManager.getTransaction().commit();
-        return order;
+        return entityManager.find(Order.class, id);
+
     }
 
     @Override
@@ -37,24 +46,23 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     @Override
     public List<Order> findAll() {
-        entityManager.getTransaction().begin();
         List<Order> orders = entityManager.createQuery("from orders", Order.class).getResultList();
         for (int j = 0; j < orders.size(); j++) {
             Order order = orders.get(j);
             order.setTotalCost(totalCost(order.getOrderItems()));
         }
-        entityManager.getTransaction().commit();
         return orders;
     }
 
     @Override
-    public Order update(Order entity) {
-        return null;
-    }
-
-    @Override
     public boolean delete(Long id) {
-        return false;
+        Order order = findById(id);
+        if (order == null) {
+            return false;
+        } else {
+            entityManager.remove(order);
+            return true;
+        }
     }
 
     public BigDecimal totalCost(List<OrderItem> items) {
@@ -66,6 +74,5 @@ public class OrderRepositoryImpl implements OrderRepository {
         }
         return totalCost;
     }
+
 }
-
-

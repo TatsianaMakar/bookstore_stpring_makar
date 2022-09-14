@@ -1,0 +1,31 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>User</title>
+</head>
+<body>
+<h1>User</h1>
+<table>
+    <tr>
+        <th>Field</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <th>Id</th>
+        <th>${user.id}</th>
+    </tr>
+    <tr>
+        <th>Name</th>
+        <th>${user.userName}</th>
+    </tr>
+    <tr>
+        <th>Email</th>
+        <th>${user.userEmail}</th>
+    </tr>
+    <tr>
+        <th>Password</th>
+        <th>${user.userPassword}</th>
+    </tr>
+</table>
+</body>
+</html>

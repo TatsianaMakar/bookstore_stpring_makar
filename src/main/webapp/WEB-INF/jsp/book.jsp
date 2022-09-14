@@ -1,0 +1,43 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Book</title>
+</head>
+<body>
+<h1>Book</h1>
+<table>
+    <tr>
+        <th>Field</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <th>Id</th>
+        <th>${book.id}</th>
+    </tr>
+    <tr>
+        <th>Title</th>
+        <th>${book.bookName}</th>
+    </tr>
+    <tr>
+        <th>Author</th>
+        <th>${book.author}</th>
+    </tr>
+    <tr>
+        <th>Year</th>
+        <th>${book.year}</th>
+    </tr>
+    <tr>
+        <th>Price</th>
+        <th>${book.price}</th>
+    </tr>
+    <tr>
+        <th>ISBN</th>
+        <th>${book.isbn}</th>
+    </tr>
+    <tr>
+        <th>Cover</th>
+        <th>${book.cover}</th>
+    </tr>
+</table>
+</body>
+</html>

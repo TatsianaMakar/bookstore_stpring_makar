@@ -1,25 +1,31 @@
 package com.company.repository.impl;
 
 import com.company.dao.entity.Book;
+import com.company.dao.entity.User;
 import com.company.repository.BookRepository;
-import jakarta.persistence.EntityManager;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
-@RequiredArgsConstructor
+@Transactional
 public class BookRepositoryImpl implements BookRepository {
 
-    private final EntityManager entityManager;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
-    public Book create(Book entity) {
-        entityManager.getTransaction().begin();
-        entityManager.persist(entity);
-        entityManager.getTransaction().commit();
-        return entity;
+    public Book create(Book book) {
+        Long id = book.getId();
+        if (id == null) {
+            entityManager.persist(book);
+        } else {
+            entityManager.merge(book);
+        }
+        return book;
     }
 
     @Override
@@ -34,26 +40,18 @@ public class BookRepositoryImpl implements BookRepository {
 
     @Override
     public List<Book> findAll() {
-        entityManager.getTransaction().begin();
-        List<Book> books = entityManager.createQuery("from books", Book.class).getResultList();
-        entityManager.getTransaction().commit();
-        return books;
-    }
-
-    @Override
-    public Book update(Book entity) {
-        entityManager.getTransaction().begin();
-        entityManager.merge(entity);
-        entityManager.getTransaction().commit();
-        return entity;
+        return entityManager.createQuery("from books", Book.class).getResultList();
     }
 
     @Override
     public boolean delete(Long id) {
-        entityManager.getTransaction().begin();
-        entityManager.remove(findById(id));
-        entityManager.getTransaction().commit();
-        return true;
+        Book book = findById(id);
+        if (book == null) {
+            return false;
+        } else {
+            entityManager.remove(book);
+            return true;
+        }
     }
 
     @Override

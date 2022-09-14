@@ -1,8 +1,8 @@
 package com.company.dao.entity;
 
-import jakarta.persistence.*;
 import lombok.Data;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Data
@@ -26,7 +26,7 @@ public class OrderItem {
     private Order order;
 
     @Column(name = "quantity")
-    private Integer quantity;
+    private int quantity;
 
     @Column(name = "price")
     private BigDecimal price;

@@ -11,5 +11,4 @@ public interface AbstractService<K, T> {
 
     public T create(T entity);
 
-    public T update(T entity);
 }
