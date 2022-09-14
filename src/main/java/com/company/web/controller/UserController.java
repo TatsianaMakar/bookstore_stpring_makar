@@ -67,6 +67,7 @@ public class UserController {
         model.addAttribute("user", user);
         return "deleteUserForm";
     }
+
     @PostMapping("/delete/{id}")
     public String deleteUser(@PathVariable Long id) {
         userService.delete(id);

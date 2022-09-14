@@ -24,10 +24,11 @@ public class ErrorController {
         model.addAttribute("message", e.getMessage());
         return "error";
     }
+
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String applicationError (AccountNotFoundException e, Model model) {
-        model.addAttribute("message",e.getMessage());
+    public String applicationError(AccountNotFoundException e, Model model) {
+        model.addAttribute("message", e.getMessage());
         return "error";
     }
 }

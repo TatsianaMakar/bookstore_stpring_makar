@@ -5,6 +5,7 @@ import com.company.repository.UserRepository;
 import com.company.service.UserService;
 import com.company.service.exception.ApplicationNotFoundException;
 import com.company.service.exception.ApplicationValidationException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,13 +13,10 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
-
-    @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    private final EncryptionServiceImpl encryptionService;
 
     @Override
     public User findById(Long id) {
@@ -31,6 +29,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User create(User user) {
+        String originalPassword = user.getUserPassword();
+        String hashedPassword = encryptionService.digest(originalPassword);
+        user.setUserPassword(hashedPassword);
         User newUser = userRepository.create(user);
         validateEmail(user);
         if (user.getUserPassword() == null) {
@@ -64,9 +65,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User login(String login, String password) {
-        //String hashedPassword = encryptionService.digest(password);
+        String hashedPassword = encryptionService.digest(password);
         return userRepository.findAll().stream()
-                .filter(u -> u.getUserEmail().equals(login) && u.getUserPassword().equals(password))
+                .filter(u -> u.getUserEmail().equals(login) && u.getUserPassword().equals(hashedPassword))
                 .findFirst()
                 .orElseThrow(() -> new ApplicationNotFoundException("We have not user with this login"));
     }

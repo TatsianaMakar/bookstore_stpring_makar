@@ -37,7 +37,7 @@ public class ApplicationConfig extends WebMvcConfigurationSupport {
     }
 
     @Override
-    protected void addInterceptors(InterceptorRegistry registry){
+    protected void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(myInterceptor()).addPathPatterns("/**");
     }
 
@@ -52,7 +52,7 @@ public class ApplicationConfig extends WebMvcConfigurationSupport {
     }
 
     @Bean
-    public MyInterceptor myInterceptor(){
+    public MyInterceptor myInterceptor() {
         return new MyInterceptor();
     }
 

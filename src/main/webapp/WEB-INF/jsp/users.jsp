@@ -15,8 +15,8 @@
     <c:forEach items="${users}" var="user" varStatus="counter">
         <tr>
             <td>${counter.count}</td>
-            <td><a href="controller?command=user&id=${user.id}">${user.userName}</a></td>
-            <td>${user.userEmail}</td>
+            <td><a href="controller?command=user&id=${user.id}"><c:out value="${user.userName}"/></a></td>
+            <td><c:out value="${user.userEmail}"/></td>
         </tr>
     </c:forEach>
 </table>

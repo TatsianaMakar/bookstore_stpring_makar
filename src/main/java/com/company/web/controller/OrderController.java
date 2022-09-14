@@ -67,6 +67,7 @@ public class OrderController {
         model.addAttribute("order", order);
         return "deleteOrderForm";
     }
+
     @PostMapping("/delete/{id}")
     public String deleteOrder(@PathVariable Long id) {
         orderService.delete(id);

@@ -34,7 +34,7 @@ public class BookServiceImpl implements BookService {
         Book newBook = bookRepository.create(book);
         validateIsbn(book);
         return newBook;
-      }
+    }
 
     @Override
     public List<Book> findAll() {
@@ -50,7 +50,7 @@ public class BookServiceImpl implements BookService {
         }
     }
 
-        public void validateIsbn(Book entity) {
+    public void validateIsbn(Book entity) {
         List<Book> books = findAll();
         for (int j = 0; j < books.size() - 1; j++) {
             if (books.get(j) != null && Objects.equals(books.get(j).getIsbn(), entity.getIsbn())) {
