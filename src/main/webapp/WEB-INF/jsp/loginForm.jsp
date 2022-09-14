@@ -10,7 +10,7 @@
 <h1>login</h1>
 <form  class="login-form" action="/login" method="post">
        <label>Login: <input name="login" type="text"</label>
-       <label>Password: <input name="password" type="password"</label>
+       <label>Password: <input name="password" type="password" minlength="4"</label>
        <button>Login</button>
 </form>
 </body>
