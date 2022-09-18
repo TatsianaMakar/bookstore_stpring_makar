@@ -1,14 +1,15 @@
 package com.company;
 
-import com.company.web.filter.AuthorizationFilter;
-import com.company.web.interceptor.MyInterceptor;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.context.annotation.Primary;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import javax.sql.DataSource;
 
 @SpringBootApplication
 public class App implements WebMvcConfigurer {
@@ -17,24 +18,18 @@ public class App implements WebMvcConfigurer {
         SpringApplication.run(App.class);
     }
 
-//    @Bean
-//    public FilterRegistrationBean<AuthorizationFilter> authorizationFilter() {
-//        FilterRegistrationBean<AuthorizationFilter> registrationBean = new FilterRegistrationBean<>();
-//        registrationBean.setFilter(new AuthorizationFilter());
-//        registrationBean.addUrlPatterns("/user/getAll");
-//        registrationBean.setOrder(2);
-//        return registrationBean;
-//    }
+    @Bean
+   // @Primary
+    @ConfigurationProperties(prefix="spring.datasource")
+    public DataSource primaryDataSource() {
+        return DataSourceBuilder.create().build();
+    }
 
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(myInterceptor())
-//                .addPathPatterns("/**");
-//    }
-//
-//    @Bean
-//    public MyInterceptor myInterceptor() {
-//        return new MyInterceptor();
-//    }
+    @Bean
+    @Primary
+    @ConfigurationProperties(prefix="spring.second-datasource")
+    public DataSource secondaryDataSource() {
+        return DataSourceBuilder.create().build();
+    }
 
 }
