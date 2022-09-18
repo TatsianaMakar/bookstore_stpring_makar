@@ -2,6 +2,11 @@
 <html>
 <head>
     <link rel="stylesheet" href="/css/style.css">
+ <style>
+        body{
+            background: url("/images/login3.png")
+        }
+    </style>
     <title>Login</title>
 </head>
 <body>
