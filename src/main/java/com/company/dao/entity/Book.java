@@ -44,6 +44,8 @@ public class Book {
     @Enumerated(EnumType.STRING)
     private Cover cover;
 
-    public enum Cover {SOFT, HARD, SPECIAL}
+    public enum Cover {
+        SOFT, HARD, SPECIAL
+    }
 
 }
