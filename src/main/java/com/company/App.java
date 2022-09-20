@@ -2,6 +2,7 @@ package com.company;
 
 
 import com.company.web.filter.AuthorizationFilter;
+import com.company.web.interceptor.MyInterceptor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -9,6 +10,7 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.sql.DataSource;
@@ -41,6 +43,17 @@ public class App implements WebMvcConfigurer {
         registrationBean.addUrlPatterns("/user/getAll", "/user/delete", "/book/create", "/order/getAll");
         registrationBean.setOrder(2);
         return registrationBean;
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(myInterceptor())
+                .addPathPatterns("/**");
+    }
+
+    @Bean
+    public MyInterceptor myInterceptor() {
+        return new MyInterceptor();
     }
 
 }
