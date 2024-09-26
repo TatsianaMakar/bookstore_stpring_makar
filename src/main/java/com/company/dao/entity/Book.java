@@ -32,7 +32,7 @@ public class Book {
     private String author;
 
     @Column(name = "year")
-    private int year;
+    private Integer year;
 
     @Column(name = "price")
     private BigDecimal price;
@@ -44,6 +44,8 @@ public class Book {
     @Enumerated(EnumType.STRING)
     private Cover cover;
 
-    public enum Cover {SOFT, HARD, SPECIAL}
+    public enum Cover {
+        SOFT, HARD, SPECIAL
+    }
 
 }
